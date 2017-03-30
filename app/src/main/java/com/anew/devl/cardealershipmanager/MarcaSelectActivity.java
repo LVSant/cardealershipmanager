@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.anew.devl.cardealershipmanager.POJO.Marca;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,12 +19,13 @@ import java.util.ArrayList;
 
 public class MarcaSelectActivity extends AppCompatActivity {
     final static String MARCA_ID = "cardealershipmanager.idmarca";
+    final static String MARCA_NAME = "cardealershipmanager.namemarca";
     MarcaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consumir_json);
+        setContentView(R.layout.activity_marca_select);
 
         setTitle("Busca Marcas FIPE");
 
@@ -32,11 +34,14 @@ public class MarcaSelectActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+
                 Intent intent = new Intent(getBaseContext(), ModeloSelectActivity.class);
 
                 long marcaSelecionadaID = adapter.getItemId(position);
 
                 intent.putExtra(MARCA_ID, marcaSelecionadaID);
+                intent.putExtra(MARCA_NAME, adapter.getItem(position).getName());
                 startActivity(intent);
             }
         });
@@ -95,8 +100,9 @@ public class MarcaSelectActivity extends AppCompatActivity {
     }
 
     private void ToatException(String ex) {
-        Log.d("erro", ex);
-
+        Toast.makeText(MarcaSelectActivity.this, "Formato JSON Inválido"
+                + ex, Toast.LENGTH_LONG).show();
+        Log.e("ERROR", ex);
     }
 
 }

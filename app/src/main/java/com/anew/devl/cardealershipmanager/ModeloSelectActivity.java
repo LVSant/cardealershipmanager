@@ -2,12 +2,13 @@ package com.anew.devl.cardealershipmanager;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.anew.devl.cardealershipmanager.POJO.Modelo;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class ModeloSelectActivity extends AppCompatActivity {
-    long idMarca =0;
+    long idMarca = 0;
 
     ModeloAdapter adapter;
 
@@ -27,7 +28,12 @@ public class ModeloSelectActivity extends AppCompatActivity {
 
         Intent in = getIntent();
         idMarca = in.getLongExtra(MarcaSelectActivity.MARCA_ID, 0l);
+        String nameMarca = in.getStringExtra(MarcaSelectActivity.MARCA_NAME);
 
+        if(nameMarca != null && !nameMarca.isEmpty()) {
+            TextView texthelper = (TextView) findViewById(R.id.textHelper2);
+            texthelper.setText("Fabricante: " + nameMarca);
+        }
         ListView listview = (ListView) findViewById(R.id.listviewmodelo);
 
 
@@ -49,25 +55,8 @@ public class ModeloSelectActivity extends AppCompatActivity {
     }
 
     public void btnReadModelos(View view) {
-        new readMarcas().execute("http://fipeapi.appspot.com/api/1/carros/veiculos/"+idMarca+".json");
+        new readMarcas().execute("http://fipeapi.appspot.com/api/1/carros/veiculos/" + idMarca + ".json");
 
-    }
-
-    private class readMarcas extends AsyncTask<String, Void, String> {
-        protected String doInBackground(String... urls) {
-            return new HttpHandler().makeServiceCall(urls[0]);
-        }
-
-        protected void onPostExecute(String result) {
-            try {
-                //That's why it cames as an object
-                //JSONObject jsonObject = new JSONObject(result);
-                JSONArray marcasItem = new JSONArray(result);
-                populateList(marcasItem);
-            } catch (Exception e) {
-                Log.d("readMModelo", e.toString());
-            }
-        }
     }
 
     private void populateList(JSONArray marcasItem) {
@@ -99,8 +88,26 @@ public class ModeloSelectActivity extends AppCompatActivity {
     }
 
     private void ToatException(String ex) {
-        Log.d("erro", ex);
+        Toast.makeText(ModeloSelectActivity.this, "Formato JSON Inválido"
+                + ex, Toast.LENGTH_LONG).show();
+        Log.e("ERROR", ex);
+    }
 
+    private class readMarcas extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... urls) {
+            return new HttpHandler().makeServiceCall(urls[0]);
+        }
+
+        protected void onPostExecute(String result) {
+            try {
+                //That's why it cames as an object
+                //JSONObject jsonObject = new JSONObject(result);
+                JSONArray marcasItem = new JSONArray(result);
+                populateList(marcasItem);
+            } catch (Exception e) {
+                Log.d("readMModelo", e.toString());
+            }
+        }
     }
 
 }

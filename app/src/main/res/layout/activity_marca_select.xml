@@ -8,11 +8,11 @@
     tools:context="com.anew.devl.cardealershipmanager.MarcaSelectActivity">
 
     <Button
-        android:id="@+id/btnReadModelos"
+        android:id="@+id/btnReadMarcas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
-        android:onClick="btnReadModelos"
+        android:onClick="btnReadMarcas"
         android:text="Atualizar"
         app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,7 +23,7 @@
         tools:layout_constraintTop_creator="1" />
 
     <ListView
-        android:id="@+id/listviewmodelo"
+        android:id="@+id/listview"
 
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -39,7 +39,7 @@
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnReadModelos"
+        app:layout_constraintTop_toBottomOf="@+id/btnReadMarcas"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
@@ -50,19 +50,19 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modelos"
+        android:text="Fabricantes"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/listviewmodelo"
+        app:layout_constraintBottom_toTopOf="@+id/listview"
         android:layout_marginStart="5dp"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/listviewmodelo" />
+        app:layout_constraintLeft_toLeftOf="@+id/listview" />
 
     <TextView
-        android:id="@+id/textHelper2"
+        android:id="@+id/textHelper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selecione o Modelo"
+        android:text="Selecione o Fabricante"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         tools:layout_constraintTop_creator="1"
         android:layout_marginStart="6dp"
