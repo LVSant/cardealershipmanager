@@ -6,13 +6,15 @@ package com.anew.devl.cardealershipmanager.POJO;
 
 public class Modelo {
     private String name;
-    private Long idMarca;
-    private Long idModelo;
 
-    public Modelo(String name, Long idMarca, Long idModelo) {
+    private Long idModelo;
+    private String key;
+
+    public Modelo(String name, Long idModelo, String key) {
         this.name = name;
-        this.idMarca = idMarca;
+
         this.idModelo = idModelo;
+        this.key = key;
     }
 
     public String getName() {
@@ -23,13 +25,6 @@ public class Modelo {
         this.name = name;
     }
 
-    public Long getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(Long idMarca) {
-        this.idMarca = idMarca;
-    }
 
     public Long getIdModelo() {
         return idModelo;
@@ -37,5 +32,13 @@ public class Modelo {
 
     public void setIdModelo(Long idModelo) {
         this.idModelo = idModelo;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

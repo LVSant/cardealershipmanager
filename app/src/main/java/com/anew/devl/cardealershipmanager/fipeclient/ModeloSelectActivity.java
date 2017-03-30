@@ -25,9 +25,9 @@ import java.util.ArrayList;
 
 
 public class ModeloSelectActivity extends AppCompatActivity {
+    final static String MODELO_ID = "cardealershipmanager.modeloid";
+    final static String MODELO_NAME = "cardealershipmanager.modeloname";
     long idMarca;
-
-
     ModeloAdapter adapter;
 
     @Override
@@ -40,14 +40,16 @@ public class ModeloSelectActivity extends AppCompatActivity {
         idMarca = in.getLongExtra(MarcaSelectActivity.MARCA_ID, 0l);
         String nameMarca = in.getStringExtra(MarcaSelectActivity.MARCA_NAME);
 
+
         if (nameMarca != null && !nameMarca.isEmpty()) {
             TextView texthelper = (TextView) findViewById(R.id.textHelper2);
             texthelper.setText("Fabricante: " + nameMarca);
         }
 
-        configureOnClickModeloItem();
+
         btnReadModelos(null);
 
+        configureOnClickModeloItem(nameMarca, idMarca);
     }
 
     public void btnReadModelos(View view) {
@@ -60,41 +62,54 @@ public class ModeloSelectActivity extends AppCompatActivity {
         }
     }
 
-    private void configureOnClickModeloItem() {
+    private void configureOnClickModeloItem(final String nameMarca, final long idMarca) {
         ListView listview = (ListView) findViewById(R.id.listviewmodelo);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//                Intent intent = new Intent(getBaseContext(), Veiculo.class);
-//                String message = "abc";
-//                long marcaSelecionadaID = adapter.getItemId(position);
-//
-//                intent.putExtra(MARCA_ID, marcaSelecionadaID);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), AnoVeiculoSelectActivity.class);
+
+                String idModelo= adapter.getItem(position).getKey();
+                String modelo= adapter.getItem(position).getName();
+
+                Log.d("VARS", "MarcaID " + idMarca+ " ModeloID " + idModelo);
+
+                intent.putExtra(MODELO_ID, idModelo);
+                intent.putExtra(MODELO_NAME, modelo);
+                intent.putExtra(MarcaSelectActivity.MARCA_NAME, nameMarca);
+                intent.putExtra(MarcaSelectActivity.MARCA_ID, idMarca);
+                startActivity(intent);
             }
         });
 
     }
 
-    private void populateList(JSONArray marcasItem) {
+    private void populateList(JSONArray modelosItems) {
 
         ArrayList<Modelo> marcas = new ArrayList<>();
 
         try {
-            for (int i = 0; i < marcasItem.length(); i++) {
-                JSONObject jsonMarca = marcasItem.optJSONObject(i);
+            for (int i = 0; i < modelosItems.length(); i++) {
+                JSONObject jsonModelo = modelosItems.optJSONObject(i);
 
-                String name = (String) jsonMarca.get("fipe_name");
-                Long id = Long.parseLong(jsonMarca.get("id").toString());
+                String name = (String) jsonModelo.get("fipe_name");
 
+                Object idjson = (Object) jsonModelo.get("id");
+                String id;
+                if(idjson instanceof String){
+                     id = idjson.toString();
+                }else{
+                    id = Integer.parseInt(idjson.toString())+"";
 
-                Modelo modelo = new Modelo(name, id, idMarca);
+                }
+                Modelo modelo = new Modelo(name, idMarca, id);
+
 
                 marcas.add(modelo);
             }
         } catch (JSONException jsonex) {
-            ToatException(jsonex.toString());
+            ToatException(jsonex);
         }
 
 
@@ -105,10 +120,10 @@ public class ModeloSelectActivity extends AppCompatActivity {
 
     }
 
-    private void ToatException(String ex) {
+    private void ToatException(Exception ex) {
         Toast.makeText(ModeloSelectActivity.this, "Formato JSON Inválido"
                 + ex, Toast.LENGTH_LONG).show();
-        Log.e("ERROR", ex);
+        Log.d("ERROR", ex.getLocalizedMessage());
     }
 
     private class readMarcas extends AsyncTask<String, Void, String> {
@@ -123,7 +138,8 @@ public class ModeloSelectActivity extends AppCompatActivity {
                 JSONArray marcasItem = new JSONArray(result);
                 populateList(marcasItem);
             } catch (Exception e) {
-                Log.d("readMModelo", e.toString());
+                Log.d("readMModelo",e.getLocalizedMessage());
+                e.printStackTrace(System.err);
             }
         }
     }

@@ -24,8 +24,8 @@ import java.util.ArrayList;
 
 
 public class MarcaSelectActivity extends AppCompatActivity {
-    final static String MARCA_ID = "cardealershipmanager.idmarca";
-    final static String MARCA_NAME = "cardealershipmanager.namemarca";
+    final static String MARCA_ID = "cardealershipmanager.marcaid";
+    final static String MARCA_NAME = "cardealershipmanager.marcaname";
     final static String URL_FIPE_JSON_MARCAS = "http://fipeapi.appspot.com/api/1/carros/marcas.json";
     MarcaAdapter adapter;
 
@@ -55,7 +55,7 @@ public class MarcaSelectActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(getBaseContext(), ModeloSelectActivity.class);
-                long marcaSelecionadaID = adapter.getItemId(position);
+                long marcaSelecionadaID = adapter.getItem(position).getId();
 
                 intent.putExtra(MARCA_ID, marcaSelecionadaID);
                 intent.putExtra(MARCA_NAME, adapter.getItem(position).getName());

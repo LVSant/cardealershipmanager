@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".fipeclient.MarcaSelectActivity" />
         <activity android:name=".fipeclient.ModeloSelectActivity" />
+        <activity android:name=".fipeclient.AnoVeiculoSelectActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
