@@ -1,4 +1,4 @@
-package com.anew.devl.cardealershipmanager;
+package com.anew.devl.cardealershipmanager.others;
 
 import android.util.Log;
 

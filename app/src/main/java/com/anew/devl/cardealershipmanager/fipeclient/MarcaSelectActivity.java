@@ -1,4 +1,4 @@
-package com.anew.devl.cardealershipmanager;
+package com.anew.devl.cardealershipmanager.fipeclient;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,7 +9,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.anew.devl.cardealershipmanager.others.HttpHandler;
 import com.anew.devl.cardealershipmanager.POJO.Marca;
+import com.anew.devl.cardealershipmanager.R;
+import com.anew.devl.cardealershipmanager.others.Utils;
+import com.anew.devl.cardealershipmanager.fipeclient.adapter.MarcaAdapter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +26,7 @@ import java.util.ArrayList;
 public class MarcaSelectActivity extends AppCompatActivity {
     final static String MARCA_ID = "cardealershipmanager.idmarca";
     final static String MARCA_NAME = "cardealershipmanager.namemarca";
+    final static String URL_FIPE_JSON_MARCAS = "http://fipeapi.appspot.com/api/1/carros/marcas.json";
     MarcaAdapter adapter;
 
     @Override
@@ -28,16 +35,26 @@ public class MarcaSelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_marca_select);
 
         setTitle("Busca Marcas FIPE");
+        configureOnClickMarcaItem();
+        btnReadMarcas(null);
+    }
 
+    public void btnReadMarcas(View view) {
+        if (Utils.isOnline(getBaseContext())) {
+            new readMarcas().execute(URL_FIPE_JSON_MARCAS);
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Não há conexão com a Internet", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void configureOnClickMarcaItem() {
         ListView listview = (ListView) findViewById(R.id.listview);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-
                 Intent intent = new Intent(getBaseContext(), ModeloSelectActivity.class);
-
                 long marcaSelecionadaID = adapter.getItemId(position);
 
                 intent.putExtra(MARCA_ID, marcaSelecionadaID);
@@ -45,12 +62,6 @@ public class MarcaSelectActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-    }
-
-    public void btnReadMarcas(View view) {
-        new readMarcas().execute("http://fipeapi.appspot.com/api/1/carros/marcas.json");
 
     }
 
@@ -100,7 +111,7 @@ public class MarcaSelectActivity extends AppCompatActivity {
     }
 
     private void ToatException(String ex) {
-        Toast.makeText(MarcaSelectActivity.this, "Formato JSON Inválido"
+        Toast.makeText(getApplicationContext(), "Formato JSON Inválido"
                 + ex, Toast.LENGTH_LONG).show();
         Log.e("ERROR", ex);
     }

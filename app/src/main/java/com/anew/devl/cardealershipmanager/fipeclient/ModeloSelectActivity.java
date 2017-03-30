@@ -1,4 +1,4 @@
-package com.anew.devl.cardealershipmanager;
+package com.anew.devl.cardealershipmanager.fipeclient;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -6,18 +6,27 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.anew.devl.cardealershipmanager.others.HttpHandler;
 import com.anew.devl.cardealershipmanager.POJO.Modelo;
+import com.anew.devl.cardealershipmanager.R;
+import com.anew.devl.cardealershipmanager.others.Utils;
+import com.anew.devl.cardealershipmanager.fipeclient.adapter.ModeloAdapter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 
 public class ModeloSelectActivity extends AppCompatActivity {
-    long idMarca = 0;
+    long idMarca;
+
 
     ModeloAdapter adapter;
 
@@ -25,37 +34,46 @@ public class ModeloSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modelo_select);
+        setTitle("Busca Modelos");
 
         Intent in = getIntent();
         idMarca = in.getLongExtra(MarcaSelectActivity.MARCA_ID, 0l);
         String nameMarca = in.getStringExtra(MarcaSelectActivity.MARCA_NAME);
 
-        if(nameMarca != null && !nameMarca.isEmpty()) {
+        if (nameMarca != null && !nameMarca.isEmpty()) {
             TextView texthelper = (TextView) findViewById(R.id.textHelper2);
             texthelper.setText("Fabricante: " + nameMarca);
         }
+
+        configureOnClickModeloItem();
+        btnReadModelos(null);
+
+    }
+
+    public void btnReadModelos(View view) {
+        if (Utils.isOnline(getBaseContext())) {
+
+            new readMarcas().execute("http://fipeapi.appspot.com/api/1/carros/veiculos/" + idMarca + ".json");
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Não há conexão com a Internet", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void configureOnClickModeloItem() {
         ListView listview = (ListView) findViewById(R.id.listviewmodelo);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                Intent intent = new Intent(getBaseContext(), ModeloSelect.class);
+//                Intent intent = new Intent(getBaseContext(), Veiculo.class);
 //                String message = "abc";
 //                long marcaSelecionadaID = adapter.getItemId(position);
 //
 //                intent.putExtra(MARCA_ID, marcaSelecionadaID);
 //                startActivity(intent);
-//            }
-//        });
-
-        setTitle("Busca Modelos");
-
-    }
-
-    public void btnReadModelos(View view) {
-        new readMarcas().execute("http://fipeapi.appspot.com/api/1/carros/veiculos/" + idMarca + ".json");
+            }
+        });
 
     }
 

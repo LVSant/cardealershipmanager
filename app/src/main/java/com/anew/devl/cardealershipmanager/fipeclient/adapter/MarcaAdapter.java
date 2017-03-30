@@ -1,4 +1,4 @@
-package com.anew.devl.cardealershipmanager;
+package com.anew.devl.cardealershipmanager.fipeclient.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,20 +7,21 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.anew.devl.cardealershipmanager.POJO.Modelo;
+import com.anew.devl.cardealershipmanager.POJO.Marca;
+import com.anew.devl.cardealershipmanager.R;
 
 import java.util.List;
 
-public class ModeloAdapter extends BaseAdapter {
+public class MarcaAdapter extends BaseAdapter {
 
     Context context;
-    List<Modelo> data;
+    List<Marca> data;
     private static LayoutInflater inflater = null;
 
-    public ModeloAdapter(Context context, List<Modelo> Modelos) {
+    public MarcaAdapter(Context context, List<Marca> marcas) {
         // TODO Auto-generated constructor stub
         this.context = context;
-        this.data = Modelos;
+        this.data = marcas;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -32,16 +33,14 @@ public class ModeloAdapter extends BaseAdapter {
     }
 
     @Override
-    public Modelo getItem(int position) {
-
-
+    public Marca getItem(int position) {
         return data.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        return data.get(position).getIdModelo();
+        return data.get(position).getId();
     }
 
     @Override
@@ -49,7 +48,7 @@ public class ModeloAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
         View vi = convertView;
         if (vi == null)
-            vi = inflater.inflate(R.layout.item_modelo, null);
+            vi = inflater.inflate(R.layout.item_marca, null);
         TextView text = (TextView) vi.findViewById(R.id.text);
         text.setText(data.get(position).getName());
         return vi;
