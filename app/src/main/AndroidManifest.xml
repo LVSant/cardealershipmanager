@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ShowFipe"></activity>
-        <activity android:name=".ConsumirJsonActivity">
+        <activity android:name=".MarcaSelectActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

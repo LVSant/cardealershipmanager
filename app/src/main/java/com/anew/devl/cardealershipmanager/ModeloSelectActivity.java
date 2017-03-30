@@ -2,50 +2,54 @@ package com.anew.devl.cardealershipmanager;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import com.anew.devl.cardealershipmanager.POJO.Marca;
+import com.anew.devl.cardealershipmanager.POJO.Modelo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 
-public class ConsumirJsonActivity extends AppCompatActivity {
-    final static String MARCA_ID = "cardealershipmanager.idmarca";
-    MarcaAdapter adapter;
+public class ModeloSelectActivity extends AppCompatActivity {
+    long idMarca =0;
+
+    ModeloAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consumir_json);
+        setContentView(R.layout.activity_modelo_select);
 
-        setTitle("Busca Marcas FIPE");
+        Intent in = getIntent();
+        idMarca = in.getLongExtra(MarcaSelectActivity.MARCA_ID, 0l);
 
-        ListView listview = (ListView) findViewById(R.id.listview);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ListView listview = (ListView) findViewById(R.id.listviewmodelo);
 
-                Intent intent = new Intent(getBaseContext(), ModeloSelect.class);
-                String message = "abc";
-                long marcaSelecionadaID = adapter.getItemId(position);
 
-                intent.putExtra(MARCA_ID, marcaSelecionadaID);
-                startActivity(intent);
-            }
-        });
+//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                Intent intent = new Intent(getBaseContext(), ModeloSelect.class);
+//                String message = "abc";
+//                long marcaSelecionadaID = adapter.getItemId(position);
+//
+//                intent.putExtra(MARCA_ID, marcaSelecionadaID);
+//                startActivity(intent);
+//            }
+//        });
 
+        setTitle("Busca Modelos");
 
     }
 
-    public void btnReadMarcas(View view) {
-        new readMarcas().execute("http://fipeapi.appspot.com/api/1/carros/marcas.json");
+    public void btnReadModelos(View view) {
+        new readMarcas().execute("http://fipeapi.appspot.com/api/1/carros/veiculos/"+idMarca+".json");
 
     }
 
@@ -61,35 +65,35 @@ public class ConsumirJsonActivity extends AppCompatActivity {
                 JSONArray marcasItem = new JSONArray(result);
                 populateList(marcasItem);
             } catch (Exception e) {
-                Log.d("readMarcasEX", e.toString());
+                Log.d("readMModelo", e.toString());
             }
         }
     }
 
     private void populateList(JSONArray marcasItem) {
 
-        ArrayList<Marca> marcas = new ArrayList<>();
+        ArrayList<Modelo> marcas = new ArrayList<>();
 
         try {
             for (int i = 0; i < marcasItem.length(); i++) {
                 JSONObject jsonMarca = marcasItem.optJSONObject(i);
 
                 String name = (String) jsonMarca.get("fipe_name");
-                Integer id = (Integer) jsonMarca.get("id");
-                String key = (String) jsonMarca.get("key");
+                Long id = Long.parseLong(jsonMarca.get("id").toString());
 
-                Marca marca = new Marca(name, id, key);
 
-                marcas.add(marca);
+                Modelo modelo = new Modelo(name, id, idMarca);
+
+                marcas.add(modelo);
             }
         } catch (JSONException jsonex) {
             ToatException(jsonex.toString());
         }
 
 
-        this.adapter = new MarcaAdapter(this, marcas);
+        this.adapter = new ModeloAdapter(this, marcas);
 
-        ListView listView = (ListView) findViewById(R.id.listview);
+        ListView listView = (ListView) findViewById(R.id.listviewmodelo);
         listView.setAdapter(adapter);
 
     }
