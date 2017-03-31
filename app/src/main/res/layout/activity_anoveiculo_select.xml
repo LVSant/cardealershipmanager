@@ -27,7 +27,7 @@
         android:id="@+id/btnReadAnoVeiculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="btnReadAnoVeiculo"
+        android:onClick="brnReadVeiculo"
         android:text="Atualizar"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
@@ -47,8 +47,9 @@
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/listviewanoveiculo"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="29dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginBottom="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
 
     <ListView
         android:id="@+id/listviewanoveiculo"

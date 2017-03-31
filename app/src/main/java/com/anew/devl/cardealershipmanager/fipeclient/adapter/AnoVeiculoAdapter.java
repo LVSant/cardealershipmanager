@@ -41,7 +41,7 @@ public class AnoVeiculoAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Didn't made it yet, sir");
+        return data.get(position).getId();
     }
 
     @Override

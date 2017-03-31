@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anew.devl.cardealershipmanager.MainActivity;
 import com.anew.devl.cardealershipmanager.POJO.VeiculoAno;
 import com.anew.devl.cardealershipmanager.R;
 import com.anew.devl.cardealershipmanager.fipeclient.adapter.AnoVeiculoAdapter;
@@ -23,12 +24,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.anew.devl.cardealershipmanager.fipeclient.MarcaSelectActivity.MARCA_ID;
+import static com.anew.devl.cardealershipmanager.fipeclient.MarcaSelectActivity.MARCA_NAME;
+import static com.anew.devl.cardealershipmanager.fipeclient.ModeloSelectActivity.MODELO_ID;
+
 
 public class AnoVeiculoSelectActivity extends AppCompatActivity {
 
     long marcaId;
-    String  modeloId;
+    String modeloId;
+    String marcaName;
     AnoVeiculoAdapter adapter;
+
+    static final String ANO_ID = "cardealershipmanager.anoid";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +51,20 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
 
     private void init() {
 
-
         Intent in = getIntent();
 
-        marcaId = in.getLongExtra(MarcaSelectActivity.MARCA_ID, 0L);
+        marcaId = in.getLongExtra(MARCA_ID, 0L);
 
-        modeloId = in.getStringExtra(ModeloSelectActivity.MODELO_ID);
+        modeloId = in.getStringExtra(MODELO_ID);
         String modeloName = in.getStringExtra(ModeloSelectActivity.MODELO_NAME);
-        String marcaName = in.getStringExtra(MarcaSelectActivity.MARCA_NAME);
-
-        Log.d("VARS", "MarcaID " + this.marcaId + " ModeloID " + this.modeloId);
+        this.marcaName = in.getStringExtra(MARCA_NAME);
 
         if (in != null) {
             TextView helper = (TextView) findViewById(R.id.textHelper3);
-            helper.setText(marcaName + " " + modeloName);
+            String helperText = "Selecionado: " + marcaName + " " + modeloName.split(" ")[0] +
+                    " " + modeloName.split(" ")[1];
+            helper.setText(helperText);
         }
-
 
     }
 
@@ -77,12 +83,13 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//                Intent intent = new Intent(getBaseContext(), ModeloSelectActivity.class);
-//                long marcaSelecionadaID = adapter.getItemId(position);
-//
-//                intent.putExtra(MARCA_ID, marcaSelecionadaID);
-//                intent.putExtra(MARCA_NAME, adapter.getItem(position).getName());
-//                startActivity(intent);
+                Intent intent = new Intent(getBaseContext(), VeiculoShowActivity.class);
+
+                intent.putExtra(MARCA_ID, marcaId);
+                intent.putExtra(MARCA_NAME, marcaName);
+                intent.putExtra(MODELO_ID, modeloId);
+                intent.putExtra(ANO_ID, adapter.getItem(position).getKey());
+                startActivity(intent);
             }
         });
 
@@ -100,7 +107,7 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
                 JSONArray marcasItem = new JSONArray(result);
                 populateList(marcasItem);
             } catch (Exception e) {
-                Log.d("readVeiculosEX", e.toString());
+                toasException(e.toString());
             }
         }
     }
@@ -114,17 +121,17 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
                 JSONObject jsonVeiculoAno = veiculoAnosJSonArray.optJSONObject(i);
 
                 String name = (String) jsonVeiculoAno.get("name");
-                String id = (String) jsonVeiculoAno.get("id");
+                //String id = (String) jsonVeiculoAno.get("id");
                 String key = (String) jsonVeiculoAno.get("key");
                 String marca = (String) jsonVeiculoAno.get("fipe_marca");
                 String veiculo = (String) jsonVeiculoAno.get("veiculo");
 
-                VeiculoAno vAno = new VeiculoAno(name, marca, key, id, veiculo);
+                VeiculoAno vAno = new VeiculoAno(name, marca, key, 0l, veiculo);
 
                 veiculoAnos.add(vAno);
             }
         } catch (JSONException jsonex) {
-            ToatException(jsonex.toString());
+            toasException(jsonex.toString());
         }
 
 
@@ -135,11 +142,13 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
 
     }
 
-    private void ToatException(String ex) {
+    private void toasException(String ex) {
         Toast.makeText(getApplicationContext(), "Formato JSON Inválido"
                 + ex, Toast.LENGTH_LONG).show();
         Log.e("ERROR", ex);
     }
+
+
 
 }
 

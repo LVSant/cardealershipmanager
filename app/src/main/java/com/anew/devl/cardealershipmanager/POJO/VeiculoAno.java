@@ -33,17 +33,16 @@ public class VeiculoAno {
     private String name;
     private String marca;
     private String key;
-    private String id;
+    private Long id;
     private String veiculo;
 
-    public VeiculoAno(String name, String marca, String key, String id, String veiculo) {
+    public VeiculoAno(String name, String marca, String key, Long id, String veiculo) {
         this.name = name;
         this.marca = marca;
         this.key = key;
         this.id = id;
         this.veiculo = veiculo;
     }
-
 
     public String getName() {
         return name;
@@ -69,11 +68,11 @@ public class VeiculoAno {
         this.key = key;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
