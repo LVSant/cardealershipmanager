@@ -71,4 +71,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnBackModelo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:text="Voltar"
+        android:onClick="onBack"
+        app:layout_constraintRight_toLeftOf="@+id/btnReadModelos"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/listviewmodelo"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="10dp" />
+
 </android.support.constraint.ConstraintLayout>

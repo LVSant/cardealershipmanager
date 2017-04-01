@@ -43,7 +43,7 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anoveiculo_select);
 
-        setTitle("Busca Modelos FIPE");
+        setTitle("Ano Veiculo FIPE");
         init();
         configureOnClickVeiculo();
         btnReadAnoVeiculo(null);
@@ -148,7 +148,9 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
         Log.e("ERROR", ex);
     }
 
-
+    public void onBack(View view){
+        this.finish();
+    }
 
 }
 

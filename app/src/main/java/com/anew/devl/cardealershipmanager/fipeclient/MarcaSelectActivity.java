@@ -116,5 +116,9 @@ public class MarcaSelectActivity extends AppCompatActivity {
         Log.e("ERROR", ex);
     }
 
+    public void onBack(View view){
+        this.finish();
+    }
+
 }
 

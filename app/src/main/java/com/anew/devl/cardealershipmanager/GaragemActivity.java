@@ -2,6 +2,7 @@ package com.anew.devl.cardealershipmanager;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 public class GaragemActivity extends AppCompatActivity {
 
@@ -9,5 +10,9 @@ public class GaragemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garagem);
+    }
+
+    public void onBack(View view){
+        this.finish();
     }
 }

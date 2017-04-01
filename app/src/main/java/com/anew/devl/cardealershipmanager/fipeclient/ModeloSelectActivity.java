@@ -1,5 +1,6 @@
 package com.anew.devl.cardealershipmanager.fipeclient;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -142,6 +143,10 @@ public class ModeloSelectActivity extends AppCompatActivity {
                 e.printStackTrace(System.err);
             }
         }
+    }
+
+    public void onBack(View view){
+        this.finish();
     }
 
 }
