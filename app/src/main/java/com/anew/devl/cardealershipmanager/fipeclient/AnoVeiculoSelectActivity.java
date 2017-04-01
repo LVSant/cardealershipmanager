@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.anew.devl.cardealershipmanager.MainActivity;
 import com.anew.devl.cardealershipmanager.POJO.VeiculoAno;
 import com.anew.devl.cardealershipmanager.R;
 import com.anew.devl.cardealershipmanager.fipeclient.adapter.AnoVeiculoAdapter;
@@ -43,7 +42,7 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anoveiculo_select);
 
-        setTitle("Ano Veiculo FIPE");
+        setTitle("Ano VeiculoDBHelper FIPE");
         init();
         configureOnClickVeiculo();
         btnReadAnoVeiculo(null);
@@ -148,7 +147,7 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
         Log.e("ERROR", ex);
     }
 
-    public void onBack(View view){
+    public void onBack(View view) {
         this.finish();
     }
 

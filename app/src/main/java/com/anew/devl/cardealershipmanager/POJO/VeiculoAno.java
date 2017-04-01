@@ -1,31 +1,30 @@
 package com.anew.devl.cardealershipmanager.POJO;
 
 /**
- *
  * All attributes matches exactly the same parameter from the JSON.
- *
+ * <p>
  * Example
  * URL: GET http://fipeapi.appspot.com/api/1/carros/veiculo/21/4828.json
- *
- [{
- "fipe_marca": "Fiat",
- "fipe_codigo": "2014-1",
- "name": "2014 Gasolina",
- "marca": "FIAT",
- "key": "2014-1",
- "veiculo": "Palio 1.0 ECONOMY Fire Flex 8V 4p",
- "id": "2014-1"
- },
- {
- "fipe_marca": "Fiat",
- "fipe_codigo": "2013-1",
- "name": "2013 Gasolina",
- "marca": "FIAT",
- "key": "2013-1",
- "veiculo": "Palio 1.0 ECONOMY Fire Flex 8V 4p",
- "id": "2013-1"
- }]
- *
+ * <p>
+ * [{
+ * "fipe_marca": "Fiat",
+ * "fipe_codigo": "2014-1",
+ * "name": "2014 Gasolina",
+ * "marca": "FIAT",
+ * "key": "2014-1",
+ * "veiculo": "Palio 1.0 ECONOMY Fire Flex 8V 4p",
+ * "id": "2014-1"
+ * },
+ * {
+ * "fipe_marca": "Fiat",
+ * "fipe_codigo": "2013-1",
+ * "name": "2013 Gasolina",
+ * "marca": "FIAT",
+ * "key": "2013-1",
+ * "veiculo": "Palio 1.0 ECONOMY Fire Flex 8V 4p",
+ * "id": "2013-1"
+ * }]
+ * <p>
  * Created by devl on 3/30/17.
  */
 

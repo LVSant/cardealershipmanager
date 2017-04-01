@@ -10,11 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.anew.devl.cardealershipmanager.others.HttpHandler;
 import com.anew.devl.cardealershipmanager.POJO.Marca;
 import com.anew.devl.cardealershipmanager.R;
-import com.anew.devl.cardealershipmanager.others.Utils;
 import com.anew.devl.cardealershipmanager.fipeclient.adapter.MarcaAdapter;
+import com.anew.devl.cardealershipmanager.others.HttpHandler;
+import com.anew.devl.cardealershipmanager.others.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -116,7 +116,7 @@ public class MarcaSelectActivity extends AppCompatActivity {
         Log.e("ERROR", ex);
     }
 
-    public void onBack(View view){
+    public void onBack(View view) {
         this.finish();
     }
 

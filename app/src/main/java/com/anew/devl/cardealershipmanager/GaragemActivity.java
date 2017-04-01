@@ -12,7 +12,7 @@ public class GaragemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_garagem);
     }
 
-    public void onBack(View view){
+    public void onBack(View view) {
         this.finish();
     }
 }

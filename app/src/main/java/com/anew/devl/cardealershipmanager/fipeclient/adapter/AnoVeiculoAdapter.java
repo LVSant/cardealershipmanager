@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.anew.devl.cardealershipmanager.POJO.Marca;
 import com.anew.devl.cardealershipmanager.POJO.VeiculoAno;
 import com.anew.devl.cardealershipmanager.R;
 

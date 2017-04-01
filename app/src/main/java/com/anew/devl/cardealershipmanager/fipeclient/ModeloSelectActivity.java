@@ -1,6 +1,5 @@
 package com.anew.devl.cardealershipmanager.fipeclient;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,11 +11,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.anew.devl.cardealershipmanager.others.HttpHandler;
 import com.anew.devl.cardealershipmanager.POJO.Modelo;
 import com.anew.devl.cardealershipmanager.R;
-import com.anew.devl.cardealershipmanager.others.Utils;
 import com.anew.devl.cardealershipmanager.fipeclient.adapter.ModeloAdapter;
+import com.anew.devl.cardealershipmanager.others.HttpHandler;
+import com.anew.devl.cardealershipmanager.others.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,10 +70,10 @@ public class ModeloSelectActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), AnoVeiculoSelectActivity.class);
 
-                String idModelo= adapter.getItem(position).getKey();
-                String modelo= adapter.getItem(position).getName();
+                String idModelo = adapter.getItem(position).getKey();
+                String modelo = adapter.getItem(position).getName();
 
-                Log.d("VARS", "MarcaID " + idMarca+ " ModeloID " + idModelo);
+                Log.d("VARS", "MarcaID " + idMarca + " ModeloID " + idModelo);
 
                 intent.putExtra(MODELO_ID, idModelo);
                 intent.putExtra(MODELO_NAME, modelo);
@@ -98,10 +97,10 @@ public class ModeloSelectActivity extends AppCompatActivity {
 
                 Object idjson = (Object) jsonModelo.get("id");
                 String id;
-                if(idjson instanceof String){
-                     id = idjson.toString();
-                }else{
-                    id = Integer.parseInt(idjson.toString())+"";
+                if (idjson instanceof String) {
+                    id = idjson.toString();
+                } else {
+                    id = Integer.parseInt(idjson.toString()) + "";
 
                 }
                 Modelo modelo = new Modelo(name, idMarca, id);
@@ -139,13 +138,13 @@ public class ModeloSelectActivity extends AppCompatActivity {
                 JSONArray marcasItem = new JSONArray(result);
                 populateList(marcasItem);
             } catch (Exception e) {
-                Log.d("readMModelo",e.getLocalizedMessage());
+                Log.d("readMModelo", e.getLocalizedMessage());
                 e.printStackTrace(System.err);
             }
         }
     }
 
-    public void onBack(View view){
+    public void onBack(View view) {
         this.finish();
     }
 

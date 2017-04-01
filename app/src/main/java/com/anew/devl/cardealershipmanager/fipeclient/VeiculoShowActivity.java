@@ -1,6 +1,8 @@
 package com.anew.devl.cardealershipmanager.fipeclient;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +14,17 @@ import android.widget.Toast;
 import com.anew.devl.cardealershipmanager.MainActivity;
 import com.anew.devl.cardealershipmanager.POJO.Veiculo;
 import com.anew.devl.cardealershipmanager.R;
+import com.anew.devl.cardealershipmanager.others.DBHelper;
 import com.anew.devl.cardealershipmanager.others.HttpHandler;
 import com.anew.devl.cardealershipmanager.others.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static com.anew.devl.cardealershipmanager.fipeclient.AnoVeiculoSelectActivity.ANO_ID;
 import static com.anew.devl.cardealershipmanager.fipeclient.MarcaSelectActivity.MARCA_ID;
@@ -37,7 +45,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veiculo_show);
 
-        setTitle("Visualizar Veiculo");
+        setTitle("Visualizar VeiculoDBHelper");
         init();
         brnReadVeiculo(null);
 
@@ -122,4 +130,36 @@ public class VeiculoShowActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+
+    public void onCadastrar(View view) {
+
+        DBHelper helper = new DBHelper(getApplicationContext());
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        //values
+        TextView textName = (TextView) findViewById(R.id.textName);
+        TextView textPreco = (TextView) findViewById(R.id.textPreco);
+        TextView textCombustivel = (TextView) findViewById(R.id.textCombustivel);
+        TextView textMarca = (TextView) findViewById(R.id.textMarca);
+
+        //handling the String to double thing
+        double preco = DBHelper.formatPrecoToSQLiteDouble(textPreco.toString());
+
+        //handling the "SQL Date Format" thing
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String adicionado = df.format(Calendar.getInstance().getTime());
+
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_NAME, textName.getText().toString());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_MARCA, textMarca.getText().toString());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_PRECO, preco);
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_ADICIONADO, adicionado);
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL, textCombustivel.getText().toString());
+
+
+        //insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(DBHelper.VeiculoDBHelper.TABLE_NAME, null, values);
+
+    }
 }
+
