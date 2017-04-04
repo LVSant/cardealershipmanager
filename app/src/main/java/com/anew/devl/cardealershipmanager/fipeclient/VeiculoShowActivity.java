@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anew.devl.cardealershipmanager.MainActivity;
-import com.anew.devl.cardealershipmanager.POJO.Veiculo;
+import com.anew.devl.cardealershipmanager.POJO.VeiculoShowPojo;
 import com.anew.devl.cardealershipmanager.R;
 import com.anew.devl.cardealershipmanager.others.DBHelper;
 import com.anew.devl.cardealershipmanager.others.HttpHandler;
@@ -21,10 +21,9 @@ import com.anew.devl.cardealershipmanager.others.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Date;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static com.anew.devl.cardealershipmanager.fipeclient.AnoVeiculoSelectActivity.ANO_ID;
 import static com.anew.devl.cardealershipmanager.fipeclient.MarcaSelectActivity.MARCA_ID;
@@ -45,11 +44,12 @@ public class VeiculoShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veiculo_show);
 
-        setTitle("Visualizar VeiculoDBHelper");
+        setTitle("Visualizar Veiculo");
         init();
         brnReadVeiculo(null);
 
     }
+
 
     private void init() {
         Intent in = getIntent();
@@ -76,7 +76,6 @@ public class VeiculoShowActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             try {
-                //That's why it cames as an object
                 //JSONObject jsonObject = new JSONObject(result);
                 JSONObject item = new JSONObject(result);
                 populateList(item);
@@ -95,7 +94,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
             String fipe_codigo = (String) jsonVeiculo.get("fipe_codigo");
             String preco = (String) jsonVeiculo.get("preco");
 
-            Veiculo instVeiculo = new Veiculo(name, combustivel, referencia, fipe_codigo, preco);
+            VeiculoShowPojo instVeiculo = new VeiculoShowPojo(name, combustivel, referencia, fipe_codigo, preco);
 
             TextView textName = (TextView) findViewById(R.id.textName);
             TextView textCombustivel = (TextView) findViewById(R.id.textCombustivel);
@@ -143,11 +142,13 @@ public class VeiculoShowActivity extends AppCompatActivity {
         TextView textMarca = (TextView) findViewById(R.id.textMarca);
 
         //handling the String to double thing
-        double preco = DBHelper.formatPrecoToSQLiteDouble(textPreco.toString());
+        double preco = DBHelper.formatPrecoToSQLiteDouble(textPreco.getText().toString());
 
         //handling the "SQL Date Format" thing
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String adicionado = df.format(Calendar.getInstance().getTime());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String adicionado = df.format(new Date());
+
+        Log.w("DATE VALUE", adicionado);
 
         ContentValues values = new ContentValues();
         values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_NAME, textName.getText().toString());

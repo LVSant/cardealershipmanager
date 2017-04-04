@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textmarca"
+            android:layout_width="160dp"
+            android:layout_height="25dp"
+            android:layout_alignBaseline="@+id/textname"
+            android:layout_alignBottom="@+id/textname"
+            android:layout_alignParentStart="true"
+            android:layout_margin="4dp"
+            android:layout_marginStart="7dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="4dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="160dp"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@+id/textpreco"
+            android:layout_alignEnd="@+id/textmarca"
+            android:layout_alignStart="@+id/textmarca"
+            android:layout_alignTop="@+id/textpreco"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="4dp"
+            android:text="R$"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="160dp"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@+id/textCombustivel"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_alignTop="@+id/textCombustivel"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="4dp"
+            android:text="Combustível"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="160dp"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@+id/textadicionado"
+            android:layout_alignEnd="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_alignTop="@+id/textadicionado"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="4dp"
+            android:text="Adicionado"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textname"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="4dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="4dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textpreco"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_alignEnd="@+id/textname"
+            android:layout_alignStart="@+id/textname"
+            android:layout_below="@+id/textname"
+            android:layout_margin="4dp"
+            android:layout_marginTop="14dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="4dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textCombustivel"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_alignEnd="@+id/textpreco"
+            android:layout_alignStart="@+id/textpreco"
+            android:layout_below="@+id/textpreco"
+            android:layout_margin="4dp"
+            android:layout_marginTop="13dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="4dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textadicionado"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_alignEnd="@+id/textCombustivel"
+            android:layout_alignStart="@+id/textCombustivel"
+            android:layout_below="@+id/textCombustivel"
+            android:layout_margin="4dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="4dp"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -42,7 +42,7 @@ public class AnoVeiculoSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anoveiculo_select);
 
-        setTitle("Ano VeiculoDBHelper FIPE");
+        setTitle("Ano Veiculo FIPE");
         init();
         configureOnClickVeiculo();
         btnReadAnoVeiculo(null);

@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     private static final String TEXT_TYPE = " TEXT";
-    private static final String DATE_TYPE = " DATE";
+    private static final String DATE_TYPE = " TEXT";
     private static final String DOUBLE_TYPE = " DOUBLE";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_ENTRIES =
@@ -49,6 +49,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // This database is only a cache for online data, so its upgrade policy is
+        // to simply to discard the data and start over
+        db.execSQL(SQL_DELETE_ENTRIES);
+        onCreate(db);
+    }
+
+    public void onDropAll(SQLiteDatabase db) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
         db.execSQL(SQL_DELETE_ENTRIES);
