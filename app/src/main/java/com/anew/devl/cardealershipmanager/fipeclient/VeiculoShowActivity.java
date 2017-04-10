@@ -24,11 +24,10 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.ANO_ID;
 import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MARCA_ID;
 import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MARCA_NAME;
 import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MODELO_ID;
-import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.ANO_ID;
-
 
 
 public class VeiculoShowActivity extends AppCompatActivity {
@@ -55,7 +54,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
         Intent in = getIntent();
 
         this.marcaId = in.getLongExtra(MARCA_ID, 0L);
-          this.marcaName = in.getStringExtra(MARCA_NAME);
+        this.marcaName = in.getStringExtra(MARCA_NAME);
         this.modeloId = in.getStringExtra(MODELO_ID);
         this.anoId = in.getStringExtra(ANO_ID);
     }
@@ -130,6 +129,10 @@ public class VeiculoShowActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void toastCadastrado() {
+        Toast.makeText(getBaseContext(), "Veículo cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+    }
+
     public void onCadastrar(View view) {
 
         DBHelper helper = new DBHelper(getApplicationContext());
@@ -160,6 +163,11 @@ public class VeiculoShowActivity extends AppCompatActivity {
 
         //insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(DBHelper.VeiculoDBHelper.TABLE_NAME, null, values);
+
+        if (newRowId >= 1) {
+            toastCadastrado();
+            onCancelar(null);
+        }
 
     }
 }
