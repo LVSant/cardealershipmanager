@@ -12,7 +12,6 @@ import com.anew.devl.cardealershipmanager.fipeclient.adapter.VeiculoGaragemAdapt
 import com.anew.devl.cardealershipmanager.others.DBHelper;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GaragemActivity extends AppCompatActivity {
@@ -22,6 +21,7 @@ public class GaragemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garagem);
+
 
         populateList();
     }
@@ -80,12 +80,12 @@ public class GaragemActivity extends AppCompatActivity {
 
     }
 
-    public void btnExcluir(View view){
+    public void btnExcluir(View view) {
         DBHelper helper = new DBHelper(getApplicationContext());
         helper.onDropAll(helper.getWritableDatabase());
     }
 
-    public void btnReadGaragem(View view){
+    public void btnReadGaragem(View view) {
         populateList();
     }
 
