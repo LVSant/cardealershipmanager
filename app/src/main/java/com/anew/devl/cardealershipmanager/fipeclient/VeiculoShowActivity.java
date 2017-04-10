@@ -22,13 +22,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
-import static com.anew.devl.cardealershipmanager.fipeclient.AnoVeiculoSelectActivity.ANO_ID;
-import static com.anew.devl.cardealershipmanager.fipeclient.MarcaSelectActivity.MARCA_ID;
-import static com.anew.devl.cardealershipmanager.fipeclient.MarcaSelectActivity.MARCA_NAME;
-import static com.anew.devl.cardealershipmanager.fipeclient.ModeloSelectActivity.MODELO_ID;
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MARCA_ID;
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MARCA_NAME;
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MODELO_ID;
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.ANO_ID;
+
 
 
 public class VeiculoShowActivity extends AppCompatActivity {
@@ -55,7 +55,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
         Intent in = getIntent();
 
         this.marcaId = in.getLongExtra(MARCA_ID, 0L);
-        this.marcaName = in.getStringExtra(MARCA_NAME);
+          this.marcaName = in.getStringExtra(MARCA_NAME);
         this.modeloId = in.getStringExtra(MODELO_ID);
         this.anoId = in.getStringExtra(ANO_ID);
     }

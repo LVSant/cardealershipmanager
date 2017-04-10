@@ -42,7 +42,7 @@ public class ModeloAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        return data.get(position).getIdModelo();
+        return 0;
     }
 
     @Override

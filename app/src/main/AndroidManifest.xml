@@ -11,9 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fipeclient.MarcaSelectActivity" />
-        <activity android:name=".fipeclient.ModeloSelectActivity" />
-        <activity android:name=".fipeclient.AnoVeiculoSelectActivity" />
+        <activity android:name=".fipeclient.FipeSelectActivity" />
         <activity android:name=".fipeclient.VeiculoShowActivity" />
         <activity
             android:name=".MainActivity"
