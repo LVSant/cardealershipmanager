@@ -7,6 +7,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
+
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static class VeiculoDBHelper implements BaseColumns {
@@ -35,6 +38,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + VeiculoDBHelper.TABLE_NAME;
+    private static final String SQL_DELETE_IDS =
+            "DELETE FROM " + VeiculoDBHelper.TABLE_NAME +" WHERE _id IN (";
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
@@ -60,6 +65,14 @@ public class DBHelper extends SQLiteOpenHelper {
         // to simply to discard the data and start over
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
+    }
+
+    public void dropIds(SQLiteDatabase db, List<Long> ids) {
+        String idsCommaSeparated = TextUtils.join(",", ids);
+
+
+        db.execSQL(SQL_DELETE_IDS + idsCommaSeparated +")");
+        //onCreate(db);
     }
 
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

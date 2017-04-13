@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import com.anew.devl.cardealershipmanager.POJO.Veiculo;
@@ -16,14 +19,60 @@ import java.util.List;
 
 public class GaragemActivity extends AppCompatActivity {
     VeiculoGaragemAdapter adapter;
+    ArrayList<Long> idsExcluir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garagem);
 
+        init();
 
         populateList();
+    }
+
+    private void init() {
+
+        idsExcluir = new ArrayList<>();
+
+        final Button bex = (Button) findViewById(R.id.btnExcluir);
+        bex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnExcluir();
+            }
+        });
+
+        final ListView listview = (ListView) findViewById(R.id.listviewgaragem);
+        listview.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listview.setItemsCanFocus(false);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //View v = listview.getChildAt(i);
+                CheckedTextView checkExcluir = (CheckedTextView) view.findViewById(R.id.checkExcluir);
+
+                if (checkExcluir.isChecked()) {
+
+                    checkExcluir.setCheckMarkDrawable(0);
+                    checkExcluir.setChecked(false);
+                } else {
+
+
+
+                    Veiculo item = (Veiculo) adapterView.getItemAtPosition(i);
+                    idsExcluir.add(item.getId());
+
+
+                    checkExcluir.setCheckMarkDrawable(R.mipmap.ic_delete);
+                    checkExcluir.setChecked(true);
+                }
+            }
+        });
+
+
     }
 
     private void populateList() {
@@ -77,12 +126,15 @@ public class GaragemActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listviewgaragem);
         listView.setAdapter(adapter);
 
-
     }
 
-    public void btnExcluir(View view) {
-        DBHelper helper = new DBHelper(getApplicationContext());
-        helper.onDropAll(helper.getWritableDatabase());
+    public void btnExcluir() {
+        DBHelper helper = new DBHelper(getBaseContext());
+        helper.dropIds(helper.getWritableDatabase(), idsExcluir);
+
+
+        //exclui e atualiza
+         btnReadGaragem(null);
     }
 
     public void btnReadGaragem(View view) {

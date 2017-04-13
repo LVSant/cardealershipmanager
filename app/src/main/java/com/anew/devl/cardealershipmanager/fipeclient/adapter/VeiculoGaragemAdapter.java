@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckedTextView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.anew.devl.cardealershipmanager.POJO.Veiculo;
@@ -23,6 +25,7 @@ public class VeiculoGaragemAdapter extends BaseAdapter {
     Context context;
     List<Veiculo> data;
     private static LayoutInflater inflater = null;
+    String value;
 
     public VeiculoGaragemAdapter(Context context, List<Veiculo> Veiculos) {
         // TODO Auto-generated constructor stub
@@ -40,8 +43,6 @@ public class VeiculoGaragemAdapter extends BaseAdapter {
 
     @Override
     public Veiculo getItem(int position) {
-
-
         return data.get(position);
     }
 
@@ -88,6 +89,8 @@ public class VeiculoGaragemAdapter extends BaseAdapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+
 
         return vi;
     }
