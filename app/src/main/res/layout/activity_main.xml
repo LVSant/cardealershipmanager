@@ -38,7 +38,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="85dp"
         android:layout_marginEnd="15dp"
-        android:text="Buscar Veículo" />
+        android:text="Busca FIPE" />
 
     <ImageButton
         android:id="@+id/imageButton"

@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckedTextView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.anew.devl.cardealershipmanager.POJO.Veiculo;
@@ -25,7 +23,7 @@ public class VeiculoGaragemAdapter extends BaseAdapter {
     Context context;
     List<Veiculo> data;
     private static LayoutInflater inflater = null;
-    String value;
+
 
     public VeiculoGaragemAdapter(Context context, List<Veiculo> Veiculos) {
         // TODO Auto-generated constructor stub
@@ -80,17 +78,16 @@ public class VeiculoGaragemAdapter extends BaseAdapter {
         textAdicionado.setTypeface(null, Typeface.BOLD);
         String dataAdicionado = data.get(position).getAdicionado();
 
-        SimpleDateFormat spfDB = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat spfShow = new SimpleDateFormat("dd/MM/yyyy");
         try {
+            //approach para transformar data SQLite para padrão comum no Brasil (dias/meses/anos)
+            SimpleDateFormat spfDB = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat spfShow = new SimpleDateFormat("dd/MM/yyyy");
             Date dataDB = spfDB.parse(dataAdicionado);
 
             textAdicionado.setText(spfShow.format(dataDB));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
 
         return vi;
     }

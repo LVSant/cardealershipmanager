@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.anew.devl.cardealershipmanager.POJO.Veiculo;
 import com.anew.devl.cardealershipmanager.fipeclient.adapter.VeiculoGaragemAdapter;
@@ -56,10 +57,14 @@ public class GaragemActivity extends AppCompatActivity {
 
                 if (checkExcluir.isChecked()) {
 
-                    checkExcluir.setCheckMarkDrawable(0);
-                    checkExcluir.setChecked(false);
-                } else {
+                    Veiculo item = (Veiculo) adapterView.getItemAtPosition(i);
+                    idsExcluir.remove(item.getId());
 
+
+                    checkExcluir.setChecked(false);
+
+
+                } else {
 
 
                     Veiculo item = (Veiculo) adapterView.getItemAtPosition(i);
@@ -71,8 +76,6 @@ public class GaragemActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     private void populateList() {
@@ -90,7 +93,7 @@ public class GaragemActivity extends AppCompatActivity {
         };
 
         //String selection =  DBHelper.VeiculoDBHelper;
-        String sortOrder =
+        String sortByAdd =
                 DBHelper.VeiculoDBHelper.COLUMN_NAME_ADICIONADO + " DESC";
 
         Cursor c = db.query(
@@ -100,7 +103,7 @@ public class GaragemActivity extends AppCompatActivity {
                 null,                                     // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
+                sortByAdd                                 // The sort order
         );
 
 
@@ -129,12 +132,18 @@ public class GaragemActivity extends AppCompatActivity {
     }
 
     public void btnExcluir() {
-        DBHelper helper = new DBHelper(getBaseContext());
-        helper.dropIds(helper.getWritableDatabase(), idsExcluir);
+        if (idsExcluir != null && !idsExcluir.isEmpty()) {
+            DBHelper helper = new DBHelper(getBaseContext());
+            helper.dropIds(helper.getWritableDatabase(), idsExcluir);
 
+            //atualiza listview
+            btnReadGaragem(null);
 
-        //exclui e atualiza
-         btnReadGaragem(null);
+            //avisa da exclusão
+            Toast.makeText(getBaseContext(),
+                    "Veículo(s) deletados com sucesso!",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     public void btnReadGaragem(View view) {
