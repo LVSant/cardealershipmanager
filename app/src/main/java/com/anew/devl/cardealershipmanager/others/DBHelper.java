@@ -19,6 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
         public static final String COLUMN_NAME_ADICIONADO = "adicionado";
         public static final String COLUMN_NAME_PRECO = "preco";
         public static final String COLUMN_NAME_COMBUSTIVEL = "combustivel";
+        public static final String COLUMN_NAME_FIPE_CODIGO = "fipe_codigo";
 
     }
 
@@ -34,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     VeiculoDBHelper.COLUMN_NAME_MARCA + TEXT_TYPE + COMMA_SEP +
                     VeiculoDBHelper.COLUMN_NAME_ADICIONADO + DATE_TYPE + COMMA_SEP +
                     VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL + TEXT_TYPE + COMMA_SEP +
+                    VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO+ TEXT_TYPE + COMMA_SEP +
                     VeiculoDBHelper.COLUMN_NAME_PRECO + DOUBLE_TYPE + " )";
 
     private static final String SQL_DELETE_ENTRIES =
@@ -42,7 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "DELETE FROM " + VeiculoDBHelper.TABLE_NAME +" WHERE _id IN (";
 
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "VeiculoDB.db";
 
     public DBHelper(Context context) {
@@ -56,6 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
+
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
     }
@@ -68,6 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void dropIds(SQLiteDatabase db, List<Long> ids) {
+
         String idsCommaSeparated = TextUtils.join(",", ids);
 
 

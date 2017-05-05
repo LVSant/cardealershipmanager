@@ -143,6 +143,8 @@ public class VeiculoShowActivity extends AppCompatActivity {
         TextView textPreco = (TextView) findViewById(R.id.textPreco);
         TextView textCombustivel = (TextView) findViewById(R.id.textCombustivel);
         TextView textMarca = (TextView) findViewById(R.id.textMarca);
+        TextView textFipeCodigo = (TextView) findViewById(R.id.textCodFipe);
+
 
         //handling the String to double thing
         double preco = DBHelper.formatPrecoToSQLiteDouble(textPreco.getText().toString());
@@ -159,6 +161,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
         values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_PRECO, preco);
         values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_ADICIONADO, adicionado);
         values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL, textCombustivel.getText().toString());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO, textFipeCodigo.getText().toString());
 
 
         //insert the new row, returning the primary key value of the new row

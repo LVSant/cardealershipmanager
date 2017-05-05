@@ -138,16 +138,7 @@
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="14sp" />
 
-        <CheckedTextView
-            android:id="@+id/checkExcluir"
-            android:layout_width="match_parent"
-            android:layout_height="28dp"
 
-            android:layout_weight="10.47"
-            android:checked="false"
-            android:gravity="center_vertical"
-            android:text="Excluir?"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
     </LinearLayout>
 

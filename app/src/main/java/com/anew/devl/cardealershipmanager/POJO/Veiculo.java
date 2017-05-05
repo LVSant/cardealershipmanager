@@ -1,12 +1,12 @@
 package com.anew.devl.cardealershipmanager.POJO;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Created by devl on 3/30/17.
  */
 
-public class Veiculo {
+public class Veiculo implements Serializable {
 
     private long id;
     private String name;
@@ -14,14 +14,24 @@ public class Veiculo {
     private String combustivel;
     private Double preco;
     private String adicionado;
+    private String fipe_codigo;
 
-    public Veiculo(long id, String name, String marca, String combustivel, Double preco, String adicionado) {
+    public Veiculo(long id, String name, String marca, String combustivel, Double preco, String adicionado, String fipe_codigo) {
         this.id = id;
         this.name = name;
         this.marca = marca;
         this.combustivel = combustivel;
         this.preco = preco;
         this.adicionado = adicionado;
+        this.fipe_codigo = fipe_codigo;
+    }
+
+    public String getFipe_codigo() {
+        return fipe_codigo;
+    }
+
+    public void setFipe_codigo(String fipe_codigo) {
+        this.fipe_codigo = fipe_codigo;
     }
 
     public long getId() {
