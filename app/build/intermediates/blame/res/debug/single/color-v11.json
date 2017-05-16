@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    }
+]

@@ -27,6 +27,7 @@ public class VeiculoGaragemAdapter extends BaseAdapter {
 
     public VeiculoGaragemAdapter(Context context, List<Veiculo> Veiculos) {
         // TODO Auto-generated constructor stub
+        super();
         this.context = context;
         this.data = Veiculos;
         inflater = (LayoutInflater) context
@@ -65,14 +66,14 @@ public class VeiculoGaragemAdapter extends BaseAdapter {
         textMarca.setTypeface(null, Typeface.BOLD);
         textMarca.setText(data.get(position).getMarca());
 
-        TextView textPreco = (TextView) vi.findViewById(R.id.textpreco);
-        textPreco.setTypeface(null, Typeface.BOLD);
-        NumberFormat nf = NumberFormat.getCurrencyInstance();
-        textPreco.setText(nf.format(data.get(position).getPreco()));
+//        TextView textPreco = (TextView) vi.findViewById(R.id.textpreco);
+//        textPreco.setTypeface(null, Typeface.BOLD);
+//        NumberFormat nf = NumberFormat.getCurrencyInstance();
+//        textPreco.setText(nf.format(data.get(position).getPreco()));
 
-        TextView textCombustivel = (TextView) vi.findViewById(R.id.textCombustivel);
-        textCombustivel.setTypeface(null, Typeface.BOLD);
-        textCombustivel.setText(data.get(position).getCombustivel());
+//        TextView textCombustivel = (TextView) vi.findViewById(R.id.textCombustivel);
+//        textCombustivel.setTypeface(null, Typeface.BOLD);
+//        textCombustivel.setText(data.get(position).getCombustivel());
 
         TextView textAdicionado = (TextView) vi.findViewById(R.id.textadicionado);
         textAdicionado.setTypeface(null, Typeface.BOLD);

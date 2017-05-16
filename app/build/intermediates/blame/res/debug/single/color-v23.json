@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_tint_edittext.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_thumb.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_tint_spinner.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/design_tint_password_toggle.xml",
+        "source": "/home/devl/.android/build-cache/739c7ab295022d8d56db6739791783727a6191ae/output/res/color-v23/design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_tint_default.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_track.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/color-v23/abc_btn_colored_text_material.xml"
+    }
+]

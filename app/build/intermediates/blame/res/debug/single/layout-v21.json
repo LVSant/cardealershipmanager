@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v21/notification_action.xml"
+    }
+]

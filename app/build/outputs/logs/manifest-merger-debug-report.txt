@@ -1,0 +1,121 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:2:1-32:12
+	package
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:3:5-49
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:6:22-76
+application
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:8:5-30:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/devl/.android/build-cache/36d4a6d625862d18aefade646ae7244c0f01efa2/output/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:design:25.3.1] /home/devl/.android/build-cache/739c7ab295022d8d56db6739791783727a6191ae/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/devl/.android/build-cache/75f8d7cf9b27d1bfff29275f86b410abf39ea3cc/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/devl/.android/build-cache/67143e6c4de652dda586d0a672e1a01c0b1a15b2/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] /home/devl/.android/build-cache/048382de171aefa15949798aa1a072c8a05e26a9/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /home/devl/.android/build-cache/ec395ef689a10b56c01de4b48fd3d5706c376ba3/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /home/devl/.android/build-cache/a6c977cc2fec7c68b1beccd32773a9db888f6d35/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/devl/.android/build-cache/5838ae4c43953bd3c85908669057d631492d20f5/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/devl/.android/build-cache/5c8ac28fe3d47b27bf1966ac078ef2c7c36a18d1/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/devl/.android/build-cache/9216987d75fe8fdc35114598cea101e111d04a88/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /home/devl/.android/build-cache/23ae25d7e94459c984ce6cd66a7ba0cac62e1055/output/AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:11:9-41
+	android:supportsRtl
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:12:9-35
+	android:allowBackup
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:9:9-35
+	android:icon
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:10:9-43
+	android:theme
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:13:9-40
+activity#com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:14:9-67
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:14:19-64
+activity#com.anew.devl.cardealershipmanager.fipeclient.VeiculoShowActivity
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:17:9-68
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:17:19-65
+activity#com.anew.devl.cardealershipmanager.MainActivity
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:18:9-27:20
+	android:label
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:20:13-56
+	android:theme
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:21:13-56
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:19:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:22:13-26:29
+action#android.intent.action.MAIN
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:23:17-69
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:23:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:25:27-74
+activity#com.anew.devl.cardealershipmanager.GaragemActivity
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:28:9-62
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:28:19-50
+activity#com.anew.devl.cardealershipmanager.VehicleFragment$VehicleDetailsFragment
+ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:29:9-76
+	android:name
+		ADDED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml:29:19-73
+uses-sdk
+INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/devl/.android/build-cache/36d4a6d625862d18aefade646ae7244c0f01efa2/output/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:design:25.3.1] /home/devl/.android/build-cache/739c7ab295022d8d56db6739791783727a6191ae/output/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/devl/.android/build-cache/75f8d7cf9b27d1bfff29275f86b410abf39ea3cc/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/devl/.android/build-cache/67143e6c4de652dda586d0a672e1a01c0b1a15b2/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/devl/.android/build-cache/070ce54f4620ca0e4e401a572fffeac5502476cb/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] /home/devl/.android/build-cache/048382de171aefa15949798aa1a072c8a05e26a9/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] /home/devl/.android/build-cache/ec395ef689a10b56c01de4b48fd3d5706c376ba3/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /home/devl/.android/build-cache/a6c977cc2fec7c68b1beccd32773a9db888f6d35/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/devl/.android/build-cache/5838ae4c43953bd3c85908669057d631492d20f5/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/devl/.android/build-cache/5c8ac28fe3d47b27bf1966ac078ef2c7c36a18d1/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/devl/.android/build-cache/9216987d75fe8fdc35114598cea101e111d04a88/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] /home/devl/.android/build-cache/23ae25d7e94459c984ce6cd66a7ba0cac62e1055/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.1] /home/devl/.android/build-cache/739c7ab295022d8d56db6739791783727a6191ae/output/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+		INJECTED from /home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:25.3.1] /home/devl/.android/build-cache/739c7ab295022d8d56db6739791783727a6191ae/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/devl/.android/build-cache/75f8d7cf9b27d1bfff29275f86b410abf39ea3cc/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/devl/.android/build-cache/67143e6c4de652dda586d0a672e1a01c0b1a15b2/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/devl/.android/build-cache/070ce54f4620ca0e4e401a572fffeac5502476cb/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] /home/devl/.android/build-cache/048382de171aefa15949798aa1a072c8a05e26a9/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] /home/devl/.android/build-cache/ec395ef689a10b56c01de4b48fd3d5706c376ba3/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /home/devl/.android/build-cache/a6c977cc2fec7c68b1beccd32773a9db888f6d35/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/devl/.android/build-cache/5838ae4c43953bd3c85908669057d631492d20f5/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/devl/.android/build-cache/5c8ac28fe3d47b27bf1966ac078ef2c7c36a18d1/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/devl/.android/build-cache/9216987d75fe8fdc35114598cea101e111d04a88/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /home/devl/.android/build-cache/23ae25d7e94459c984ce6cd66a7ba0cac62e1055/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:design:25.3.1] /home/devl/.android/build-cache/739c7ab295022d8d56db6739791783727a6191ae/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:design:25.3.1] /home/devl/.android/build-cache/739c7ab295022d8d56db6739791783727a6191ae/output/AndroidManifest.xml:26:9-47

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-land/activity_busca_fipe.xml",
+        "source": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/res/layout-land/activity_busca_fipe.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-land/fragment_garagem.xml",
+        "source": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/src/main/res/layout-land/fragment_garagem.xml"
+    }
+]

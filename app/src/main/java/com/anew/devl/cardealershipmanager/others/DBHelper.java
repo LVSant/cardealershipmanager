@@ -20,6 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
         public static final String COLUMN_NAME_PRECO = "preco";
         public static final String COLUMN_NAME_COMBUSTIVEL = "combustivel";
         public static final String COLUMN_NAME_FIPE_CODIGO = "fipe_codigo";
+        public static final String COLUMN_NAME_ANO_MODELO = "anomodelo";
 
     }
 
@@ -35,16 +36,19 @@ public class DBHelper extends SQLiteOpenHelper {
                     VeiculoDBHelper.COLUMN_NAME_MARCA + TEXT_TYPE + COMMA_SEP +
                     VeiculoDBHelper.COLUMN_NAME_ADICIONADO + DATE_TYPE + COMMA_SEP +
                     VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL + TEXT_TYPE + COMMA_SEP +
-                    VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO+ TEXT_TYPE + COMMA_SEP +
-                    VeiculoDBHelper.COLUMN_NAME_PRECO + DOUBLE_TYPE + " )";
+                    VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO + TEXT_TYPE + COMMA_SEP +
+                    VeiculoDBHelper.COLUMN_NAME_PRECO + DOUBLE_TYPE + COMMA_SEP +
+                    VeiculoDBHelper.COLUMN_NAME_ANO_MODELO + TEXT_TYPE + " )";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + VeiculoDBHelper.TABLE_NAME;
     private static final String SQL_DELETE_IDS =
-            "DELETE FROM " + VeiculoDBHelper.TABLE_NAME +" WHERE _id IN (";
+            "DELETE FROM " + VeiculoDBHelper.TABLE_NAME + " WHERE _id IN (";
+    private static final String SQL_DELETE_ID =
+            "DELETE FROM " + VeiculoDBHelper.TABLE_NAME + " WHERE _id = ";
 
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "VeiculoDB.db";
 
     public DBHelper(Context context) {
@@ -71,12 +75,15 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void dropIds(SQLiteDatabase db, List<Long> ids) {
-
         String idsCommaSeparated = TextUtils.join(",", ids);
-
-
-        db.execSQL(SQL_DELETE_IDS + idsCommaSeparated +")");
+        db.execSQL(SQL_DELETE_IDS + idsCommaSeparated + ")");
         //onCreate(db);
+    }
+
+    public void dropId(SQLiteDatabase db, long id) {
+
+        db.execSQL(SQL_DELETE_ID + id);
+
     }
 
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -84,13 +91,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @input the 'preco' value that comes as an input
      * @return a double variable with the value inputted as a String
      * Ex.:
      * Format input "R$ 99.932,94" and returns double 99932.94
      * Format input "R$ 999,12" and returns double 999.12
-     *
-     * */
+     * @input the 'preco' value that comes as an input
+     */
     public static double formatPrecoToSQLiteDouble(String input) {
 
         input = input.replaceAll("\\.", ""). //remove "."

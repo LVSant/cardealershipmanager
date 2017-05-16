@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v11/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v11/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v11/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v11/notification_media_cancel_action.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/res/merged/debug/layout-v11/notification_media_action.xml",
+        "source": "/home/devl/.android/build-cache/39af994ba5c26bcc46143a1adf37acc861eb3b3b/output/res/layout-v11/notification_media_action.xml"
+    }
+]

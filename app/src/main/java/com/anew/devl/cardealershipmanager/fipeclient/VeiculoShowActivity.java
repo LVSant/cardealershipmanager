@@ -7,12 +7,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anew.devl.cardealershipmanager.MainActivity;
-import com.anew.devl.cardealershipmanager.POJO.VeiculoShowPojo;
+import com.anew.devl.cardealershipmanager.POJO.Veiculo;
 import com.anew.devl.cardealershipmanager.R;
 import com.anew.devl.cardealershipmanager.others.DBHelper;
 import com.anew.devl.cardealershipmanager.others.HttpHandler;
@@ -21,22 +22,27 @@ import com.anew.devl.cardealershipmanager.others.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.ANO_ID;
 import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MARCA_ID;
-import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MARCA_NAME;
 import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MODELO_ID;
 
 
 public class VeiculoShowActivity extends AppCompatActivity {
 
+    private long marcaId;
+    private String modeloId;
+    private String anoId;
+    private Veiculo newVehicle;
 
-    long marcaId;
-    String modeloId;
-    String anoId;
-    String marcaName;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +60,6 @@ public class VeiculoShowActivity extends AppCompatActivity {
         Intent in = getIntent();
 
         this.marcaId = in.getLongExtra(MARCA_ID, 0L);
-        this.marcaName = in.getStringExtra(MARCA_NAME);
         this.modeloId = in.getStringExtra(MODELO_ID);
         this.anoId = in.getStringExtra(ANO_ID);
     }
@@ -92,8 +97,13 @@ public class VeiculoShowActivity extends AppCompatActivity {
             String referencia = (String) jsonVeiculo.get("referencia");
             String fipe_codigo = (String) jsonVeiculo.get("fipe_codigo");
             String preco = (String) jsonVeiculo.get("preco");
+            String marca = (String) jsonVeiculo.get("marca");
+            String anoModelo = (String) jsonVeiculo.get("ano_modelo");
 
-            VeiculoShowPojo instVeiculo = new VeiculoShowPojo(name, combustivel, referencia, fipe_codigo, preco);
+            //Creates a new vehicle, already handling the PrecoToSQLiteDouble thing
+            Veiculo veiculo = new Veiculo(name, marca, combustivel, DBHelper.formatPrecoToSQLiteDouble(preco),
+                    referencia, fipe_codigo, anoModelo);
+            newVehicle = veiculo;
 
             TextView textName = (TextView) findViewById(R.id.textName);
             TextView textCombustivel = (TextView) findViewById(R.id.textCombustivel);
@@ -101,13 +111,17 @@ public class VeiculoShowActivity extends AppCompatActivity {
             TextView textCodFipe = (TextView) findViewById(R.id.textCodFipe);
             TextView textPreco = (TextView) findViewById(R.id.textPreco);
             TextView textMarca = (TextView) findViewById(R.id.textMarca);
+            TextView textAnoModelo = (TextView) findViewById(R.id.textAnoModelo);
 
-            textName.setText(instVeiculo.getName());
-            textCombustivel.setText(instVeiculo.getCombustivel());
-            textReferencia.setText(instVeiculo.getReferencia());
-            textCodFipe.setText(instVeiculo.getFipe_codigo());
-            textPreco.setText(instVeiculo.getPreco());
-            textMarca.setText(marcaName);
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+
+            textName.setText(veiculo.getName());
+            textCombustivel.setText(veiculo.getCombustivel());
+            textReferencia.setText(veiculo.getAdicionado());
+            textCodFipe.setText(veiculo.getFipe_codigo());
+            textPreco.setText("R" + nf.format(veiculo.getPreco()));
+            textMarca.setText(veiculo.getMarca());
+            textAnoModelo.setText(veiculo.getAnoModelo());
 
 
         } catch (JSONException jsonex) {
@@ -138,30 +152,18 @@ public class VeiculoShowActivity extends AppCompatActivity {
         DBHelper helper = new DBHelper(getApplicationContext());
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        //values
-        TextView textName = (TextView) findViewById(R.id.textName);
-        TextView textPreco = (TextView) findViewById(R.id.textPreco);
-        TextView textCombustivel = (TextView) findViewById(R.id.textCombustivel);
-        TextView textMarca = (TextView) findViewById(R.id.textMarca);
-        TextView textFipeCodigo = (TextView) findViewById(R.id.textCodFipe);
-
-
-        //handling the String to double thing
-        double preco = DBHelper.formatPrecoToSQLiteDouble(textPreco.getText().toString());
-
         //handling the "SQL Date Format" thing
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String adicionado = df.format(new Date());
 
-        Log.w("DATE VALUE", adicionado);
-
         ContentValues values = new ContentValues();
-        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_NAME, textName.getText().toString());
-        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_MARCA, textMarca.getText().toString());
-        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_PRECO, preco);
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_NAME, newVehicle.getName());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_MARCA, newVehicle.getMarca());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_PRECO, newVehicle.getPreco());
         values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_ADICIONADO, adicionado);
-        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL, textCombustivel.getText().toString());
-        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO, textFipeCodigo.getText().toString());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL, newVehicle.getCombustivel());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO, newVehicle.getFipe_codigo());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_ANO_MODELO, newVehicle.getAnoModelo());
 
 
         //insert the new row, returning the primary key value of the new row

@@ -15,8 +15,11 @@ public class Veiculo implements Serializable {
     private Double preco;
     private String adicionado;
     private String fipe_codigo;
+    private String anoModelo;
 
-    public Veiculo(long id, String name, String marca, String combustivel, Double preco, String adicionado, String fipe_codigo) {
+
+    public Veiculo(long id, String name, String marca, String combustivel, Double preco,
+                   String adicionado, String fipe_codigo, String anoModelo) {
         this.id = id;
         this.name = name;
         this.marca = marca;
@@ -24,15 +27,53 @@ public class Veiculo implements Serializable {
         this.preco = preco;
         this.adicionado = adicionado;
         this.fipe_codigo = fipe_codigo;
+        this.anoModelo = anoModelo;
+    }
+
+    public Veiculo( String name, String marca, String combustivel, Double preco,
+                   String adicionado, String fipe_codigo, String anoModelo) {
+
+        this.name = name;
+        this.marca = marca;
+        this.combustivel = combustivel;
+        this.preco = preco;
+        this.adicionado = adicionado;
+        this.fipe_codigo = fipe_codigo;
+        this.anoModelo = anoModelo;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setCombustivel(String combustivel) {
+        this.combustivel = combustivel;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public void setAdicionado(String adicionado) {
+        this.adicionado = adicionado;
+    }
+
+    public void setFipe_codigo(String fipe_codigo) {
+        this.fipe_codigo = fipe_codigo;
+    }
+
+    public String getAnoModelo() {
+        return anoModelo;
+    }
+
+    public void setAnoModelo(String anoModelo) {
+        this.anoModelo = anoModelo;
     }
 
     public String getFipe_codigo() {
         return fipe_codigo;
     }
 
-    public void setFipe_codigo(String fipe_codigo) {
-        this.fipe_codigo = fipe_codigo;
-    }
 
     public long getId() {
         return id;
@@ -54,31 +95,20 @@ public class Veiculo implements Serializable {
         return marca;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
 
     public String getCombustivel() {
         return combustivel;
     }
 
-    public void setCombustivel(String combustivel) {
-        this.combustivel = combustivel;
-    }
 
     public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
 
     public String getAdicionado() {
         return adicionado;
     }
 
-    public void setAdicionado(String adicionado) {
-        this.adicionado = adicionado;
-    }
+
 }
