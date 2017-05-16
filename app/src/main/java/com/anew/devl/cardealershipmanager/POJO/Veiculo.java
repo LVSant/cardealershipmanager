@@ -16,10 +16,11 @@ public class Veiculo implements Serializable {
     private String adicionado;
     private String fipe_codigo;
     private String anoModelo;
+    private boolean isCar;
 
 
     public Veiculo(long id, String name, String marca, String combustivel, Double preco,
-                   String adicionado, String fipe_codigo, String anoModelo) {
+                   String adicionado, String fipe_codigo, String anoModelo, boolean isCar) {
         this.id = id;
         this.name = name;
         this.marca = marca;
@@ -28,10 +29,12 @@ public class Veiculo implements Serializable {
         this.adicionado = adicionado;
         this.fipe_codigo = fipe_codigo;
         this.anoModelo = anoModelo;
+        this.isCar = isCar;
     }
 
-    public Veiculo( String name, String marca, String combustivel, Double preco,
-                   String adicionado, String fipe_codigo, String anoModelo) {
+
+    public Veiculo(String name, String marca, String combustivel, Double preco,
+                   String adicionado, String fipe_codigo, String anoModelo, boolean isCar) {
 
         this.name = name;
         this.marca = marca;
@@ -40,6 +43,15 @@ public class Veiculo implements Serializable {
         this.adicionado = adicionado;
         this.fipe_codigo = fipe_codigo;
         this.anoModelo = anoModelo;
+        this.isCar = isCar;
+    }
+
+    public boolean getIsCar() {
+        return isCar;
+    }
+
+    public void setIsCar(boolean car) {
+        isCar = car;
     }
 
     public void setMarca(String marca) {

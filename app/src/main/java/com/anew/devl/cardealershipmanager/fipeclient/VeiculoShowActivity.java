@@ -26,9 +26,10 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.ANO_ID;
-import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MARCA_ID;
-import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity.MODELO_ID;
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectCarActivity.ANO_ID;
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectCarActivity.MARCA_ID;
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectCarActivity.MODELO_ID;
+import static com.anew.devl.cardealershipmanager.fipeclient.FipeSelectMotoActivity.IS_CAR;
 
 
 public class VeiculoShowActivity extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
     private String modeloId;
     private String anoId;
     private Veiculo newVehicle;
+    private boolean isCar;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,6 +61,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
     private void init() {
         Intent in = getIntent();
 
+        this.isCar = in.getBooleanExtra(IS_CAR, true);
         this.marcaId = in.getLongExtra(MARCA_ID, 0L);
         this.modeloId = in.getStringExtra(MODELO_ID);
         this.anoId = in.getStringExtra(ANO_ID);
@@ -66,7 +69,11 @@ public class VeiculoShowActivity extends AppCompatActivity {
 
     public void brnReadVeiculo(View view) {
         if (Utils.isOnline(getBaseContext())) {
-            new readModelo().execute("http://fipeapi.appspot.com/api/1/carros/veiculo/" + marcaId + "/" + modeloId + "/" + anoId + ".json");
+            if (isCar)
+                new readModelo().execute("http://fipeapi.appspot.com/api/1/carros/veiculo/" + marcaId + "/" + modeloId + "/" + anoId + ".json");
+
+            if (!isCar)
+                new readModelo().execute("http://fipeapi.appspot.com/api/1/motos/veiculo/" + marcaId + "/" + modeloId + "/" + anoId + ".json");
         } else {
             Toast.makeText(getApplicationContext(),
                     "Não há conexão com a Internet", Toast.LENGTH_LONG).show();
@@ -102,7 +109,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
 
             //Creates a new vehicle, already handling the PrecoToSQLiteDouble thing
             Veiculo veiculo = new Veiculo(name, marca, combustivel, DBHelper.formatPrecoToSQLiteDouble(preco),
-                    referencia, fipe_codigo, anoModelo);
+                    referencia, fipe_codigo, anoModelo, isCar);
             newVehicle = veiculo;
 
             TextView textName = (TextView) findViewById(R.id.textName);
@@ -164,6 +171,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
         values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL, newVehicle.getCombustivel());
         values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO, newVehicle.getFipe_codigo());
         values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_ANO_MODELO, newVehicle.getAnoModelo());
+        values.put(DBHelper.VeiculoDBHelper.COLUMN_NAME_IS_CAR, newVehicle.getIsCar() ? 1 : 0);
 
 
         //insert the new row, returning the primary key value of the new row

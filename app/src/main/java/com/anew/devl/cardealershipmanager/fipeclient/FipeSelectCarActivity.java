@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class FipeSelectActivity extends AppCompatActivity {
+public class FipeSelectCarActivity extends AppCompatActivity {
     public final static String MARCA_ID = "cardealershipmanager.marcaid";
     public final static String MARCA_NAME = "cardealershipmanager.marcaname";
     public final static String MODELO_ID = "cardealershipmanager.modeloid";
@@ -175,7 +175,7 @@ public class FipeSelectActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(getBaseContext(), FipeSelectActivity.class);
+                Intent intent = new Intent(getBaseContext(), FipeSelectCarActivity.class);
                 long marcaSelecionadaID = adapterMarca.getItem(position).getId();
 
                 intent.putExtra(PASSO_BUSCA, "2");
@@ -248,7 +248,7 @@ public class FipeSelectActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(getBaseContext(), FipeSelectActivity.class);
+                Intent intent = new Intent(getBaseContext(), FipeSelectCarActivity.class);
 
                 String idModelo = adapterModelo.getItem(position).getKey();
                 String modelo = adapterModelo.getItem(position).getName();

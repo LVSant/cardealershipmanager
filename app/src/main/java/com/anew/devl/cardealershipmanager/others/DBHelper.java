@@ -21,6 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
         public static final String COLUMN_NAME_COMBUSTIVEL = "combustivel";
         public static final String COLUMN_NAME_FIPE_CODIGO = "fipe_codigo";
         public static final String COLUMN_NAME_ANO_MODELO = "anomodelo";
+        public static final String COLUMN_NAME_IS_CAR = "iscar";
 
     }
 
@@ -28,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TEXT_TYPE = " TEXT";
     private static final String DATE_TYPE = " TEXT";
     private static final String DOUBLE_TYPE = " DOUBLE";
+    private static final String INTEGER_TYPE = " INTEGER";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + VeiculoDBHelper.TABLE_NAME + " (" +
@@ -38,7 +40,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL + TEXT_TYPE + COMMA_SEP +
                     VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO + TEXT_TYPE + COMMA_SEP +
                     VeiculoDBHelper.COLUMN_NAME_PRECO + DOUBLE_TYPE + COMMA_SEP +
-                    VeiculoDBHelper.COLUMN_NAME_ANO_MODELO + TEXT_TYPE + " )";
+                    VeiculoDBHelper.COLUMN_NAME_ANO_MODELO + TEXT_TYPE + COMMA_SEP +
+                    VeiculoDBHelper.COLUMN_NAME_IS_CAR + INTEGER_TYPE + " )";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + VeiculoDBHelper.TABLE_NAME;
@@ -48,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "DELETE FROM " + VeiculoDBHelper.TABLE_NAME + " WHERE _id = ";
 
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "VeiculoDB.db";
 
     public DBHelper(Context context) {

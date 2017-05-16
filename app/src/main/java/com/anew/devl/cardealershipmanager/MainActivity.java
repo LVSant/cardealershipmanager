@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.anew.devl.cardealershipmanager.fipeclient.FipeSelectActivity;
+import com.anew.devl.cardealershipmanager.fipeclient.FipeSelectCarActivity;
+import com.anew.devl.cardealershipmanager.fipeclient.FipeSelectMotoActivity;
 import com.anew.devl.cardealershipmanager.others.Utils;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void startBuscaFipe() {
         if (Utils.isOnline(getBaseContext())) {
-            Intent in = new Intent(getBaseContext(), FipeSelectActivity.class);
-            in.putExtra(FipeSelectActivity.PASSO_BUSCA, "1");
+            Intent in = new Intent(getBaseContext(), FipeSelectMotoActivity.class);
+            in.putExtra(FipeSelectMotoActivity.PASSO_BUSCA, "1");
             startActivity(in);
         } else {
             Toast.makeText(getApplicationContext(), "Não há conexão com a Internet", Toast.LENGTH_LONG).show();

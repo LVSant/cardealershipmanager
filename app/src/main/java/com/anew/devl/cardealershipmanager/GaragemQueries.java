@@ -47,7 +47,8 @@ public class GaragemQueries {
                     DBHelper.VeiculoDBHelper.COLUMN_NAME_COMBUSTIVEL,
                     DBHelper.VeiculoDBHelper.COLUMN_NAME_ADICIONADO,
                     DBHelper.VeiculoDBHelper.COLUMN_NAME_FIPE_CODIGO,
-                    DBHelper.VeiculoDBHelper.COLUMN_NAME_ANO_MODELO
+                    DBHelper.VeiculoDBHelper.COLUMN_NAME_ANO_MODELO,
+                    DBHelper.VeiculoDBHelper.COLUMN_NAME_IS_CAR,
             };
 
             //String selection =  DBHelper.VeiculoDBHelper;
@@ -76,10 +77,11 @@ public class GaragemQueries {
                     String adicionado = c.getString(c.getColumnIndexOrThrow("adicionado"));
                     String fipe_codigo = c.getString(c.getColumnIndexOrThrow("fipe_codigo"));
                     String anoModelo = c.getString(c.getColumnIndexOrThrow("anomodelo"));
+                    Boolean isCar = c.getInt(c.getColumnIndexOrThrow("iscar")) == 1 ? true : false;
 
 
                     veiculos.add(new Veiculo(id, name, marca, combustivel, preco, adicionado,
-                            fipe_codigo, anoModelo));
+                            fipe_codigo, anoModelo, isCar));
 
 
                 } while (c.moveToNext());
