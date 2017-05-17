@@ -3,6 +3,7 @@ package com.anew.devl.cardealershipmanager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class GaragemActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class GaragemActivity extends AppCompatActivity {
     }
 
 
-    public void onBack(View view) {
+    public void onBack(MenuItem view) {
         this.finish();
     }
 }

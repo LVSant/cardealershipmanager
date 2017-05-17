@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -46,16 +47,6 @@ public class VehicleFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-        Button buttonVoltar = (Button) getActivity().findViewById(R.id.voltarGaragem);
-        if (buttonVoltar != null) {
-            buttonVoltar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getActivity().finish();
-                }
-            });
-        }
 
         //Search in the database for Vehicles in Garage
         GaragemQueries.DBAsyncTask dbAsyncTask = new GaragemQueries.DBAsyncTask();
@@ -444,4 +435,7 @@ public class VehicleFragment extends ListFragment {
         Toast.makeText(view.getContext(), "Veículo deletado com sucesso", Toast.LENGTH_SHORT);
     }
 
+    public void onBack(MenuItem view) {
+        getActivity().finish();
+    }
 }

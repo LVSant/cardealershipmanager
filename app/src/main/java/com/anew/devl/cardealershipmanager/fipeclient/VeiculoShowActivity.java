@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -107,6 +108,10 @@ public class VeiculoShowActivity extends AppCompatActivity {
             String marca = (String) jsonVeiculo.get("marca");
             String anoModelo = (String) jsonVeiculo.get("ano_modelo");
 
+            if (anoModelo.contains("32000")) {
+                anoModelo = "Zero KM";
+            }
+
             //Creates a new vehicle, already handling the PrecoToSQLiteDouble thing
             Veiculo veiculo = new Veiculo(name, marca, combustivel, DBHelper.formatPrecoToSQLiteDouble(preco),
                     referencia, fipe_codigo, anoModelo, isCar);
@@ -183,7 +188,10 @@ public class VeiculoShowActivity extends AppCompatActivity {
             toastCadastrado();
             onCancelar(null);
         }
+    }
 
+    public void onBack(MenuItem view) {
+        this.finish();
     }
 }
 

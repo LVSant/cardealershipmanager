@@ -13,18 +13,8 @@
             android:id="@+id/titles"
             class="com.anew.devl.cardealershipmanager.VehicleFragment"
             android:layout_width="match_parent"
-            android:layout_height="421dp" />
+            android:layout_height="match_parent" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.80" />
-
-        <Button
-            android:id="@+id/voltarGaragem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Voltar" />
     </LinearLayout>
 
 
