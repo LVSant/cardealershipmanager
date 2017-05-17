@@ -119,6 +119,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
             TextView textPreco = (TextView) findViewById(R.id.textPreco);
             TextView textMarca = (TextView) findViewById(R.id.textMarca);
             TextView textAnoModelo = (TextView) findViewById(R.id.textAnoModelo);
+            TextView textVeiculo = (TextView) findViewById(R.id.textVeiculo);
 
             NumberFormat nf = NumberFormat.getCurrencyInstance();
 
@@ -129,6 +130,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
             textPreco.setText("R" + nf.format(veiculo.getPreco()));
             textMarca.setText(veiculo.getMarca());
             textAnoModelo.setText(veiculo.getAnoModelo());
+            textVeiculo.setText(veiculo.getIsCar() ? "Carros e Utilitários Pequenos" : "Motos e Motonetas");
 
 
         } catch (JSONException jsonex) {

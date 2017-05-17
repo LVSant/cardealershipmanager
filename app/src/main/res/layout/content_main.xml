@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.anew.devl.cardealershipmanager.MainActivity"
     tools:showIn="@layout/activity_main"
-    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteY="89dp"
     tools:layout_editor_absoluteX="0dp">
 
 
@@ -15,36 +15,53 @@
         android:id="@+id/imgviewMoto"
         android:layout_width="150dp"
         android:layout_height="230dp"
-        android:layout_marginEnd="16dp"
         app:srcCompat="@mipmap/ic_moto_fipe"
+        app:layout_constraintLeft_toRightOf="@+id/space"
+        android:layout_marginLeft="8dp"
         tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="40dp"
+        android:layout_height="99dp"
+        android:layout_marginBottom="189dp"
+        android:layout_marginTop="189dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <ImageView
         android:id="@+id/imgviewCar"
         android:layout_width="150dp"
         android:layout_height="230dp"
-        android:layout_marginStart="16dp"
         app:srcCompat="@mipmap/ic_car_fipe"
+        app:layout_constraintRight_toLeftOf="@+id/space"
+        android:layout_marginRight="8dp"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="8dp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Selecione o tipo de veículo a ser buscado"
+        android:id="@+id/textView3"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/imgviewCar"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

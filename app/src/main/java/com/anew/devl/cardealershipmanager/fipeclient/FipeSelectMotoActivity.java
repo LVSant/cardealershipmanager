@@ -63,7 +63,8 @@ public class FipeSelectMotoActivity extends AppCompatActivity {
         } else {
 
             Intent in = getIntent();
-            switch (in.getStringExtra(PASSO_BUSCA)) {
+            String passo = in.getStringExtra(PASSO_BUSCA);
+            switch (passo) {
                 case "1":
                     initBuscaMarca();
                     break;

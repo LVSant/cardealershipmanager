@@ -2,25 +2,32 @@ package com.anew.devl.cardealershipmanager;
 
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anew.devl.cardealershipmanager.POJO.Veiculo;
+import com.anew.devl.cardealershipmanager.fipeclient.FipeSelectCarActivity;
+import com.anew.devl.cardealershipmanager.fipeclient.FipeSelectMotoActivity;
 import com.anew.devl.cardealershipmanager.fipeclient.adapter.VeiculoGaragemAdapter;
 import com.anew.devl.cardealershipmanager.others.DBHelper;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -39,6 +46,7 @@ public class VehicleFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         Button buttonVoltar = (Button) getActivity().findViewById(R.id.voltarGaragem);
         if (buttonVoltar != null) {
             buttonVoltar.setOnClickListener(new View.OnClickListener() {
@@ -48,10 +56,6 @@ public class VehicleFragment extends ListFragment {
                 }
             });
         }
-
-
-        View detailsFrame = getActivity().findViewById(R.id.details);
-        lv = getListView();
 
         //Search in the database for Vehicles in Garage
         GaragemQueries.DBAsyncTask dbAsyncTask = new GaragemQueries.DBAsyncTask();
@@ -66,29 +70,62 @@ public class VehicleFragment extends ListFragment {
             e.printStackTrace();
         }
 
-
-        setListAdapter(new VeiculoGaragemAdapter(getActivity().getBaseContext(), veiculos));
-
-        mDualPane = detailsFrame != null
-                && detailsFrame.getVisibility() == View.VISIBLE;
+        if (veiculos != null && !veiculos.isEmpty()) {
 
 
-        if (savedInstanceState != null) {
-            // Restore last state for checked position.
-            mCurCheckPosition = savedInstanceState.getInt("curChoice", 0);
-        }
+            View detailsFrame = getActivity().findViewById(R.id.details);
+            lv = getListView();
 
-        if (mDualPane) {
-            Veiculo item = (Veiculo) getListView().getAdapter().getItem(mCurCheckPosition);
 
-            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            showDetails(item, mCurCheckPosition);
+            setListAdapter(new VeiculoGaragemAdapter(getActivity().getBaseContext(), veiculos));
+
+            mDualPane = detailsFrame != null
+                    && detailsFrame.getVisibility() == View.VISIBLE;
+
+
+            if (savedInstanceState != null) {
+                // Restore last state for checked position.
+                mCurCheckPosition = savedInstanceState.getInt("curChoice", 0);
+            }
+
+            if (mDualPane) {
+                Veiculo item = (Veiculo) getListView().getAdapter().getItem(mCurCheckPosition);
+
+                getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                showDetails(item, mCurCheckPosition);
+            } else {
+
+                getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                getListView().setItemChecked(mCurCheckPosition, true);
+            }
         } else {
 
-            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            getListView().setItemChecked(mCurCheckPosition, true);
-        }
+            setListAdapter(new VeiculoGaragemAdapter(getActivity().getBaseContext(), new ArrayList<Veiculo>()));
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Não há veiculos cadastrados")
+                    .setMessage("Que tipo de veículo deseja cadastrar?")
+                    .setPositiveButton("Carros", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), FipeSelectCarActivity.class);
+                            intent.putExtra(FipeSelectCarActivity.PASSO_BUSCA, "1");
+                            startActivity(intent);
+
+                        }
+                    })
+                    .setNegativeButton("Motos", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), FipeSelectMotoActivity.class);
+                            intent.putExtra(FipeSelectMotoActivity.PASSO_BUSCA, "1");
+                            startActivity(intent);
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .show();
+
+        }
     }
 
     @Override
@@ -213,11 +250,14 @@ public class VehicleFragment extends ListFragment {
             TextView textCombustivel = (TextView) findViewById(R.id.textCombustivel);
             textCombustivel.setText(veiculo.getCombustivel());
 
-            TextView textAnoModelo= (TextView) findViewById(R.id.textAnoModelo);
+            TextView textAnoModelo = (TextView) findViewById(R.id.textAnoModelo);
             textAnoModelo.setText(veiculo.getAnoModelo());
 
             TextView textReferencia = (TextView) findViewById(R.id.textReferencia);
             textReferencia.setText(veiculo.getAdicionado());
+
+            TextView textVeiculo = (TextView) findViewById(R.id.textVeiculo);
+            textVeiculo.setText(veiculo.getIsCar() ? "Carros e Utilitários Pequenos" : "Motos e Motonetas");
 
             String dataAdicionado = veiculo.getAdicionado();
             try {
@@ -261,7 +301,7 @@ public class VehicleFragment extends ListFragment {
             View inflate = inflater.inflate(R.layout.activity_veiculo_show, null);
 
             Veiculo veiculo = getVeiculoSelecionado();
-            configuraActivityShowVeiculo(inflate, veiculo.getId());
+            configuraActivityShowVeiculo(inflate);
 
             TextView textMarca = (TextView) inflate.findViewById(R.id.textMarca);
             textMarca.setText(veiculo.getMarca());
@@ -282,8 +322,11 @@ public class VehicleFragment extends ListFragment {
             TextView textReferencia = (TextView) inflate.findViewById(R.id.textReferencia);
             textReferencia.setText(veiculo.getAdicionado());
 
-            TextView textAnoModelo= (TextView) inflate.findViewById(R.id.textAnoModelo);
+            TextView textAnoModelo = (TextView) inflate.findViewById(R.id.textAnoModelo);
             textAnoModelo.setText(veiculo.getAnoModelo());
+
+            TextView textVeiculo = (TextView) inflate.findViewById(R.id.textVeiculo);
+            textVeiculo.setText(veiculo.getIsCar() ? "Carros e Utilitários Pequenos" : "Motos e Motonetas");
 
             String dataAdicionado = veiculo.getAdicionado();
             try {
@@ -308,7 +351,7 @@ public class VehicleFragment extends ListFragment {
     /*
     * Approach para usar veiculoShowActivity na listagem de garagem, usando inflate!
     * */
-    private static void configuraActivityShowVeiculo(final View inflate, final long id) {
+    private static void configuraActivityShowVeiculo(final View inflate) {
 
         if (inflate != null) {
             Button buttonCadastrar = (Button) inflate.findViewById(R.id.buttonCadastrar);
@@ -318,73 +361,87 @@ public class VehicleFragment extends ListFragment {
             Button buttonCancelar = (Button) inflate.findViewById(R.id.buttonCancelar);
             buttonCancelar.setText("Excluir");
 
-
-            buttonCancelar.setOnClickListener(new View.OnClickListener() {
+            lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
-                public void onClick(View v) {
+                public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                               int pos, long id) {
+                    // TODO Auto-generated method stub
+
+                    Log.v("long clicked", "pos: " + pos);
+                    final long itemId = lv.getAdapter().getItemId(pos);
+
+                    new AlertDialog.Builder(inflate.getContext())
+                            .setTitle("Excluir veículo")
+                            .setMessage("Tem certeza que deseja excluir este veículo?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    DBHelper helper = new DBHelper(inflate.getContext());
+                                    helper.dropId(helper.getWritableDatabase(), itemId);
+
+                                    refreshUIafterDelete(inflate);
 
 
-                    DBHelper helper = new DBHelper(v.getContext());
-                    helper.dropId(helper.getWritableDatabase(), id);
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
 
-                    lv.deferNotifyDataSetChanged();
-                    GaragemQueries.DBAsyncTask dbAsyncTask = new GaragemQueries.DBAsyncTask();
-                    dbAsyncTask.execute(v.getContext());
 
-                    List<Veiculo> veiculos = null;
-                    try {
-                        veiculos = dbAsyncTask.get();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    }
-
-                    lv.setAdapter(new VeiculoGaragemAdapter(v.getContext(), veiculos));
-
-                    TextView textMarca = (TextView) inflate.findViewById(R.id.textMarca);
-                    textMarca.setText("");
-
-                    TextView textNome = (TextView) inflate.findViewById(R.id.textName);
-                    textNome.setText("");
-
-                    TextView textPreco = (TextView) inflate.findViewById(R.id.textPreco);
-                    textPreco.setText("");
-
-                    TextView textCombustivel = (TextView) inflate.findViewById(R.id.textCombustivel);
-                    textCombustivel.setText("");
-
-                    TextView textReferencia = (TextView) inflate.findViewById(R.id.textReferencia);
-                    textReferencia.setText("");
-
-                    TextView textCodigoFipe = (TextView) inflate.findViewById(R.id.textCodFipe);
-                    textCodigoFipe.setText("");
-
-                    TextView textAnoModelo= (TextView) inflate.findViewById(R.id.textAnoModelo);
-                    textAnoModelo.setText("");
-
-                    Toast.makeText(inflate.getContext(), "Veículo deletado com sucesso", Toast.LENGTH_SHORT);
-
+                    return true;
                 }
             });
+
         }
     }
 
-    /*public static void btnExcluir(long id) {
 
-        DBHelper helper = new DBHelper(getActivity().getBaseContext());
-        helper.dropId(helper.getWritableDatabase(), id);
+    private static void refreshUIafterDelete(View view) {
 
-        //atualiza listview
+        lv.deferNotifyDataSetChanged();
+        GaragemQueries.DBAsyncTask dbAsyncTask = new GaragemQueries.DBAsyncTask();
+        dbAsyncTask.execute(view.getContext());
 
-        onActivityCreated(null);
+        List<Veiculo> veiculos = null;
+        try {
+            veiculos = dbAsyncTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
-        //avisa da exclusão
-        Toast.makeText(getActivity().getBaseContext(),
-                "Veículo deletado com sucesso!",
-                Toast.LENGTH_SHORT).show();
+        lv.setAdapter(new VeiculoGaragemAdapter(view.getContext(), veiculos));
+
+        TextView textMarca = (TextView) view.findViewById(R.id.textMarca);
+        textMarca.setText("");
+
+        TextView textNome = (TextView) view.findViewById(R.id.textName);
+        textNome.setText("");
+
+        TextView textPreco = (TextView) view.findViewById(R.id.textPreco);
+        textPreco.setText("");
+
+        TextView textCombustivel = (TextView) view.findViewById(R.id.textCombustivel);
+        textCombustivel.setText("");
+
+        TextView textReferencia = (TextView) view.findViewById(R.id.textReferencia);
+        textReferencia.setText("");
+
+        TextView textCodigoFipe = (TextView) view.findViewById(R.id.textCodFipe);
+        textCodigoFipe.setText("");
+
+        TextView textAnoModelo = (TextView) view.findViewById(R.id.textAnoModelo);
+        textAnoModelo.setText("");
+
+        TextView textVeiculo = (TextView) view.findViewById(R.id.textVeiculo);
+        textVeiculo.setText("");
+
+        Toast.makeText(view.getContext(), "Veículo deletado com sucesso", Toast.LENGTH_SHORT);
     }
-}*/
-
 
 }
