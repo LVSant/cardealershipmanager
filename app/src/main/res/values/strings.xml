@@ -1,9 +1,4 @@
 <resources>
-    <string name="app_name">CarDealershipManager</string>
-    <string name="title_activity_main">Car Control</string>
-    <string name="title_activity_main2">Main2Activity</string>
-
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-
+    <string name="app_name">Garagem Brasil FIPE</string>
+    <string name="title_activity_main">Garagem Brasil FIPE</string>
 </resources>

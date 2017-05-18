@@ -132,7 +132,7 @@ public class VeiculoShowActivity extends AppCompatActivity {
             textCombustivel.setText(veiculo.getCombustivel());
             textReferencia.setText(veiculo.getAdicionado());
             textCodFipe.setText(veiculo.getFipe_codigo());
-            textPreco.setText("R" + nf.format(veiculo.getPreco()));
+            textPreco.setText("R"+nf.format(veiculo.getPreco()));
             textMarca.setText(veiculo.getMarca());
             textAnoModelo.setText(veiculo.getAnoModelo());
             textVeiculo.setText(veiculo.getIsCar() ? "Carros e Utilitários Pequenos" : "Motos e Motonetas");

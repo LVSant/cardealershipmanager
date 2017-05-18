@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_86ed2f88da80037d983e1e71604adcd3b394f781/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="f5a6ca5046621dc53304ad712823ee39e89d0f61">
         <dex dex="/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_560270eeb33f000a507f708d6c3bb16751f1a59f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/home/devl/AndroidStudioProjects/CarDealershipManager/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_86ed2f88da80037d983e1e71604adcd3b394f781/classes.dex" />
     </item>
 
 </items>
