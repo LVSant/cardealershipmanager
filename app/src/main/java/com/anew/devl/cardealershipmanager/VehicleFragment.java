@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -301,9 +302,9 @@ public class VehicleFragment extends ListFragment {
             TextView textNome = (TextView) inflate.findViewById(R.id.textName);
             textNome.setText(veiculo.getName());
 
-            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            NumberFormat brl = NumberFormat.getCurrencyInstance();
             TextView textPreco = (TextView) inflate.findViewById(R.id.textPreco);
-            textPreco.setText("R" + nf.format(veiculo.getPreco()));
+            textPreco.setText(brl.format(veiculo.getPreco()));
 
 
             TextView textCombustivel = (TextView) inflate.findViewById(R.id.textCombustivel);
